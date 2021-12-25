@@ -1,6 +1,6 @@
 <template>
   <div class="search-container">
-    <img src="src/assets/quasar_logo.svg" class="logo" />
+    <img src="../assets/quasar_logo.svg" class="logo" />
     <SearchBar
       class="search-bar"
       :iconName="useStore().engine.iconName"

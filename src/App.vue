@@ -6,7 +6,7 @@ import Home from './views/Home.vue'
 
 <template>
   <Home></Home>
-  <img class="bg_img" src="src/assets/quasar_logo_bg.svg" />
+  <img class="bg_img" src="./assets/quasar_logo_bg.svg" />
 </template>
 
 <style lang="scss">
@@ -19,6 +19,7 @@ body {
   margin: 0;
   padding: 0;
   background-color: var(--body-base);
+  font-family: Avenir, "Pingfang SC", Helvetica, sans-serif;
 }
 .bg_img {
   position: fixed;

@@ -28,7 +28,7 @@ const state = reactive({
 })
 
 onMounted(() => {
-  axios.get('public/engines.json').then(res => {
+  axios.get('./engines.json').then(res => {
     state.engines = res.data
     useStore().engine = res.data[0]
   }).catch(err => {

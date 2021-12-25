@@ -8,10 +8,10 @@
   >
     <div class="logo-container">
       <img
-        :src="`src/assets/icons/icon_${props.iconName}.svg`"
         :class="{
           white: props.chosen,
         }"
+        :src="`./assets/icons/icon_${props.iconName}.svg`"
       />
     </div>
 
@@ -56,7 +56,7 @@ defineEmits(['chose'])
 
   height: 48px;
 
-  transition: box-shadow 0.2s ease-in-out;
+  transition: all 0.1s ease-in-out;
 
   user-select: none;
 
@@ -64,6 +64,9 @@ defineEmits(['chose'])
     width: 24px;
     height: 24px;
     overflow: hidden;
+    .white {
+      filter: invert(50%) brightness(10000%) contrast(10000%);
+    }
   }
 
   .title {
@@ -77,13 +80,8 @@ defineEmits(['chose'])
 .label:hover {
   box-shadow: var(--drop-shadow);
 
-  transition: box-shadow 0.2s ease-in-out;
+  transition: all 0.1s ease-in-out;
 
   cursor: pointer;
-}
-
-.white {
-  filter: drop-shadow(80px 0px 0px white);
-  transform: translateX(-80px);
 }
 </style>

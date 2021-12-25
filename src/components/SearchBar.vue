@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="input">
-      <img :src="`src/assets/icons/icon_${props.iconName}.svg`" />
+      <img :src="`./assets/icons/icon_${props.iconName}.svg`" />
       <input
         type="text"
         class="text_input"
@@ -10,7 +10,7 @@
         v-model="state.searchStr"
         ref="input"
       />
-      <img src="src/assets/icons/icon_right.svg" class="arrow" />
+      <img src="../assets/icons/icon_right.svg" class="arrow" />
     </div>
   </div>
 </template>
