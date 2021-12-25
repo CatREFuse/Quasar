@@ -1,0 +1,38 @@
+﻿[
+    {
+        "title": "百度",
+        "iconName": "baidu",
+        "tags": "通用",
+        "urlPattern": "http://www.baidu.com/s?wd={query}"
+    },
+    {
+        "title": "知乎",
+        "iconName": "zhihu",
+        "tags": "知识",
+        "urlPattern": "http://www.zhihu.com/search?q={query}"
+    },
+    {
+        "title": "淘宝",
+        "iconName": "taobao",
+        "tags": "购物",
+        "urlPattern": "http://s.taobao.com/search?q={query}"
+    },
+    {
+        "title": "豆瓣",
+        "iconName": "douban",
+        "tags": "书籍,电影,社交",
+        "urlPattern": "https://www.douban.com/search?q={query}"
+    },
+    {
+        "title": "magi",
+        "iconName": "magi",
+        "tags": "知识,通用",
+        "urlPattern": "https://magi.com/search?q={query}"
+    },
+    {
+        "title": "Github",
+        "iconName": "github",
+        "tags": "编程",
+        "urlPattern": "https://github.com/search?q={query}"
+    }
+]

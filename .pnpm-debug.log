@@ -1,0 +1,23 @@
+{
+  "0 debug pnpm:scope": {
+    "selected": 1
+  },
+  "1 info pnpm": {
+    "err": {
+      "name": "Error",
+      "message": "not found: serve",
+      "code": "ENOENT",
+      "stack": "Error: not found: serve\n    at getNotFoundError (/opt/homebrew/Cellar/node/17.2.0/pnpm-global/5/node_modules/.pnpm/pnpm@6.24.2/node_modules/pnpm/dist/pnpm.cjs:41440:51)\n    at Function.whichSync [as sync] (/opt/homebrew/Cellar/node/17.2.0/pnpm-global/5/node_modules/.pnpm/pnpm@6.24.2/node_modules/pnpm/dist/pnpm.cjs:41517:13)\n    at getCommandAbsolutePathSync (/opt/homebrew/Cellar/node/17.2.0/pnpm-global/5/node_modules/.pnpm/pnpm@6.24.2/node_modules/pnpm/dist/pnpm.cjs:43082:44)\n    at default_1 (/opt/homebrew/Cellar/node/17.2.0/pnpm-global/5/node_modules/.pnpm/pnpm@6.24.2/node_modules/pnpm/dist/pnpm.cjs:43091:32)\n    at /opt/homebrew/Cellar/node/17.2.0/pnpm-global/5/node_modules/.pnpm/pnpm@6.24.2/node_modules/pnpm/dist/pnpm.cjs:179675:39"
+    }
+  },
+  "2 error pnpm": {
+    "code": "ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL",
+    "prefix": "/Users/tanshow/Development/quasar_fe",
+    "err": {
+      "name": "pnpm",
+      "message": "not found: serve",
+      "code": "ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL",
+      "stack": "Error: not found: serve\n    at getNotFoundError (/opt/homebrew/Cellar/node/17.2.0/pnpm-global/5/node_modules/.pnpm/pnpm@6.24.2/node_modules/pnpm/dist/pnpm.cjs:41440:51)\n    at Function.whichSync [as sync] (/opt/homebrew/Cellar/node/17.2.0/pnpm-global/5/node_modules/.pnpm/pnpm@6.24.2/node_modules/pnpm/dist/pnpm.cjs:41517:13)\n    at getCommandAbsolutePathSync (/opt/homebrew/Cellar/node/17.2.0/pnpm-global/5/node_modules/.pnpm/pnpm@6.24.2/node_modules/pnpm/dist/pnpm.cjs:43082:44)\n    at default_1 (/opt/homebrew/Cellar/node/17.2.0/pnpm-global/5/node_modules/.pnpm/pnpm@6.24.2/node_modules/pnpm/dist/pnpm.cjs:43091:32)\n    at /opt/homebrew/Cellar/node/17.2.0/pnpm-global/5/node_modules/.pnpm/pnpm@6.24.2/node_modules/pnpm/dist/pnpm.cjs:179675:39"
+    }
+  }
+}
