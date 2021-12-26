@@ -30,7 +30,7 @@ const props = defineProps({
   },
   iconName: {
     type: String,
-    default: "baidu",
+    default: "baidu.svg",
     required: false,
   }
 })

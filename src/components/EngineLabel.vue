@@ -33,7 +33,7 @@ const props = withDefaults(defineProps<{
   title?: string,
   chosen?: boolean,
 }>(), {
-  iconName: 'baidu',
+  iconName: 'baidu.svg',
   title: '百度',
   chosen: false,
 })
