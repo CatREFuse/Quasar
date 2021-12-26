@@ -59,13 +59,14 @@ defineEmits(['chose'])
   transition: all 0.1s ease-in-out;
 
   user-select: none;
+  -webkit-user-select: none;
 
   .logo-container {
     width: 24px;
     height: 24px;
     overflow: hidden;
     .white {
-      filter: invert(50%) brightness(10000%) contrast(10000%);
+      filter: brightness(0%) invert(100%);
     }
   }
 

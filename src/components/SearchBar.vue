@@ -73,7 +73,7 @@ watchEffect(() => {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 16px;
+  gap: 4px;
   background-color: white;
   border-radius: 16px;
   padding: 0px 8px 0px 16px;
