@@ -6,7 +6,7 @@
 
 Vue 3 + TypeScript + Vite
 
-'''shell
+```shell
 # 调试
 npm run serve
 
@@ -15,4 +15,4 @@ npm run build
 
 # 更新搜索数据
 source engine.sh
-'''
+```
