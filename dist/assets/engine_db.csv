@@ -1,0 +1,13 @@
+﻿"title","iconName","command","loginRequire","tags","urlPattern"
+百度,baidu.svg,bd,0,通用,http://www.baidu.com/s?wd={query}
+知乎,zhihu.svg,zh,0,知识,http://www.zhihu.com/search?q={query}
+淘宝,taobao.svg,tb,1,购物,http://s.taobao.com/search?q={query}
+豆瓣,douban.svg,db,0,"书籍,电影,社交",https://www.douban.com/search?q={query}
+magi,magi.svg,mg,0,"知识,通用",https://magi.com/search?q={query}
+Github,github.svg,gh,0,编程,https://github.com/search?q={query}
+youtube,youtube.svg,ytb,0,视频,https://www.youtube.com/results?search_query={query}
+Bilibili,bilibili.svg,bl,0,视频,https://search.bilibili.com/all?keyword={query}
+谷歌翻译,google_translate.svg,gt,0,翻译,https://translate.google.cn/?sl=auto&tl=zh-CN&text={query}&op=translate
+谷歌学术,google_scholar.svg,gs,0,知识,https://scholar.google.com.hk/scholar?hl=zh-CN&as_sdt=0%2C5&q={query}&btnG=
+Pinterest,pinterest.svg,pin,1,"图片,设计",https://www.pinterest.com/search/pins/?q={query}
+Unsplash,unsplash.svg,us,0,"图片,摄影",https://unsplash.dogedoge.com/s/photos/{query}

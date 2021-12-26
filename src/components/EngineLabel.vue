@@ -11,7 +11,7 @@
         :class="{
           white: props.chosen,
         }"
-        :src="`./assets/icons/icon_${props.iconName}.svg`"
+        :src="`https://gitee.com/CatREFuse/img-base/raw/master/icons/${props.iconName}`"
       />
     </div>
 

@@ -1,7 +1,10 @@
 <template>
   <div class="container">
     <div class="input">
-      <img :src="`./assets/icons/icon_${props.iconName}.svg`" />
+      <img
+        :src="`https://gitee.com/CatREFuse/img-base/raw/master/icons/${iconName}`"
+        class="search-logo"
+      />
       <input
         type="text"
         class="text_input"
@@ -61,6 +64,11 @@ watchEffect(() => {
 </script>
 
 <style lang='scss' scoped>
+.search-logo {
+  width: 24px;
+  height: 24px;
+}
+
 .input {
   display: flex;
   flex-direction: row;

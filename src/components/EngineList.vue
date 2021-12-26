@@ -16,12 +16,8 @@ import EngineLabel from './EngineLabel.vue';
 import { onMounted, reactive } from 'vue'
 import axios from 'axios'
 import useStore from '../store/index'
+import { Engine } from '../model/Engine'
 
-interface Engine {
-  title: string,
-  iconName: string,
-  urlPattern: string,
-}
 
 const state = reactive({
   engines: Array<Engine>(),
