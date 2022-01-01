@@ -109,5 +109,11 @@ watchEffect(() => {
     -webkit-user-select: none;
     -webkit-user-drag: none;
   }
+
+  .arrow {
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-user-drag: none;
+  }
 }
 </style>
