@@ -7,10 +7,10 @@
 Vue 3 + TypeScript + Vite + Pinia
 
 ```shell
-# 调试
+# 调试命令
 npm run dev
 
-# 构建
+# 构建命令，构建目标文件夹为 ./home，产物直接通过 Github Pages 进行部署
 npm run build
 ```
 
