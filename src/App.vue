@@ -195,5 +195,8 @@ body {
   right: -90px;
   bottom: -40px;
   pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
 }
 </style>
