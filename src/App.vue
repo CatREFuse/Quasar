@@ -86,11 +86,11 @@ function resetCursor() {
 
     <Home></Home>
     <img class="bg_img" src="./assets/quasar_logo_bg.svg" />
-    <div class="debugger">
+    <!-- <div class="debugger">
       <h4>debugger</h4>
       <p>cursor: {{ state.cursor.x }}, {{ state.cursor.y }}</p>
       <p>visualCusor: {{ state.visualCursor.x }}, {{ state.visualCursor.y }}</p>
-    </div>
+    </div>-->
   </div>
 </template>
 
