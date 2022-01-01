@@ -15,8 +15,23 @@
         @mouseenter="turnToCaret"
         @mouseleave="turnToNormal"
       />
-      <p class="tip">{{ state.tip }}</p>
-      <img src="../assets/icons/icon_right.svg" class="arrow" v-dot-hover @click="doSearch()" />
+      <p
+        class="tip"
+        :style="{
+          color: state.tip == '点击以搜索' ? 'var(--text-mian)' : 'var(--text-disabled)'
+        }"
+      >{{ state.tip }}</p>
+      <img
+        src="../assets/icons/icon_right.svg"
+        class="arrow"
+        v-dot-hover="state.searchStr != ''"
+        @click="doSearch()"
+        :style="{
+          opacity: state.searchStr == '' ? 0.3 : 1
+        }"
+        @mouseenter="showClickTip"
+        @mouseleave="dismissClickTip"
+      />
     </div>
   </div>
 </template>
@@ -27,6 +42,7 @@ import useStore from '../store/index'
 
 function turnToCaret() { useStore().caret = true; }
 function turnToNormal() { useStore().caret = false; }
+
 
 const props = defineProps({
   urlPattern: {
@@ -94,6 +110,16 @@ watch(() => useStore().hoverEngine, (newValue, oldValue) => {
     state.placeholder = `输入「${newValue.command}」可快速选择「${newValue.title}」`
   } else { state.placeholder = 'Search for Your Quasar' }
 })
+
+function showClickTip() {
+  if (state.searchStr == '') { return }
+  // state.tip = "点击以搜索"
+}
+
+function dismissClickTip() {
+  if (state.searchStr == '') { return }
+  state.tip = ""
+}
 
 
 </script>

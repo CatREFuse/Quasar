@@ -3,9 +3,10 @@ import useStore from './store/index';
 
 export default function (app: App<Element>) {
     app.directive('dot-hover', {
-        mounted(el: HTMLElement, binding): void {
+        updated(el: HTMLElement, binding): void {
             el.onmouseenter = () => {
-                useStore().hover = true;
+
+                useStore().hover = binding.value;
             };
             el.onmouseleave = () => {
                 useStore().hover = false;
