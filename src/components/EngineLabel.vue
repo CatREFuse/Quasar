@@ -25,14 +25,14 @@
         color: props.chosen ? 'white' : 'var(--text-main)'
       }"
     >{{ props.title }}</p>
-    <tooltip
+    <!-- <tooltip
       class="tooltip"
       v-if="showTooltip"
       :content="props.engine.command"
       :style="{
         left: `${labelWidth / 2 - 45}px`
       }"
-    ></tooltip>
+    ></tooltip>-->
   </div>
 </template>
 
@@ -59,10 +59,12 @@ let showTooltip = ref(false)
 
 function showTool() {
   showTooltip.value = true
+  useStore().hoverEngine = props.engine
 }
 
 function dismissTool() {
   showTooltip.value = false
+  useStore().hoverEngine = undefined
 }
 
 defineEmits(['chose'])

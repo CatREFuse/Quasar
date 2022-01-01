@@ -7,7 +7,7 @@
       :icon-name="engine.iconName"
       :index="index"
       @chose="choseLabel($event, index)"
-      :chosen="useStore().engine.title == engine.title"
+      :chosen="useStore().engine?.title == engine.title"
       :engine="engine"
     ></EngineLabel>
   </div>

@@ -1,10 +1,10 @@
 <template>
-  <div class="search-container">
+  <div class="search-container" @keydown.tab.prevent="switchEngine($event)">
     <img src="../assets/quasar_logo.svg" class="logo" />
     <SearchBar
       class="search-bar"
-      :iconName="useStore().engine.iconName"
-      :url-pattern="useStore().engine.urlPattern"
+      :iconName="useStore().engine?.iconName"
+      :url-pattern="useStore().engine?.urlPattern"
     />
     <EngineList></EngineList>
     <div class="footer" v-if="!useStore().debug" v-text-hover>
@@ -32,6 +32,10 @@ import SearchBar from './SearchBar.vue';
 import EngineList from './EngineList.vue';
 import useStore from '../store/index'
 
+// 切换引擎
+function switchEngine(event?: KeyboardEvent) {
+  useStore().switchEngineByAdd(event?.shiftKey ? -1 : 1)
+}
 
 </script>
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="bubble">命令：{{ props.content }}</div>
+  <div class="bubble">指令：{{ props.content }}</div>
 </template>
 
 <script setup lang='ts'>

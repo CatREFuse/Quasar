@@ -8,20 +8,21 @@
       <input
         type="text"
         class="text_input"
-        placeholder="Search for Your Quasar"
+        :placeholder="state.placeholder"
         @keydown.enter="doSearch($event)"
         v-model="state.searchStr"
         ref="input"
         @mouseenter="turnToCaret"
         @mouseleave="turnToNormal"
       />
+      <p class="tip">{{ state.tip }}</p>
       <img src="../assets/icons/icon_right.svg" class="arrow" v-dot-hover @click="doSearch()" />
     </div>
   </div>
 </template>
 
 <script setup lang='ts'>
-import { reactive, computed, watchEffect, Ref, ref, watch } from 'vue'
+import { reactive, computed, watchEffect, Ref, ref, watch, onMounted } from 'vue'
 import useStore from '../store/index'
 
 function turnToCaret() { useStore().caret = true; }
@@ -41,7 +42,9 @@ const props = defineProps({
 })
 
 const state = reactive({
+  tip: '',
   searchStr: '',
+  placeholder: ''
 })
 
 // 实时生成搜索 URL（其实这里可以在 press enter 之后再生成）
@@ -51,28 +54,31 @@ let searchUrl = computed(() => {
 
 // 搜索动作
 function doSearch(event?: KeyboardEvent) {
-  // for (let item of useStore().engines) {
-  //   if (state.searchStr.startsWith(item.command) || state.searchStr.startsWith(item.title)) {
-  //     useStore().selectEngine(item)
-  //     state.searchStr = ''
-  //     return
-  //   }
-  // }
+  if (state.searchStr == '') { return }
   // 检查是否在中文输入法状态下按下的 enter
   event?.isComposing || window.open(searchUrl.value, '_blank')
 }
 
+
 const input: Ref<HTMLElement | null> = ref(null);
 
 
-watchEffect(() => {
-  if (useStore().engine) {
-    input.value?.focus();
-  }
+
+watch(() => useStore().engine, () => {
+
+  setTimeout(() => input.value?.focus(), 100)
+
 })
 
 watch(() => state.searchStr, () => {
   if (state.searchStr.startsWith('\\')) { return }
+  for (let item of useStore().engines) {
+    if (state.searchStr.startsWith(item.command) || state.searchStr.startsWith(item.title)) {
+      state.tip = `按下空格选择「${item.title}」`
+      break;
+    } else { state.tip = '' }
+
+  }
   for (let item of useStore().engines) {
     if (state.searchStr.startsWith(item.command + ' ') || state.searchStr.startsWith(item.title + ' ')) {
       useStore().selectEngine(item)
@@ -80,6 +86,13 @@ watch(() => state.searchStr, () => {
     }
 
   }
+})
+
+watch(() => useStore().hoverEngine, (newValue, oldValue) => {
+  if (state.searchStr != '') { return }
+  if (newValue) {
+    state.placeholder = `输入「${newValue.command}」可快速选择「${newValue.title}」`
+  } else { state.placeholder = 'Search for Your Quasar' }
 })
 
 
@@ -118,6 +131,12 @@ watch(() => state.searchStr, () => {
 
   .text_input::-webkit-input-placeholder {
     color: var(--text-disabled);
+  }
+
+  .tip {
+    font-size: 14px;
+    color: var(--text-disabled);
+    font-weight: 600;
   }
 
   .arrow:hover {
