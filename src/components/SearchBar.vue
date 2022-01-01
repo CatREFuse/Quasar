@@ -21,7 +21,7 @@
 </template>
 
 <script setup lang='ts'>
-import { reactive, computed, watchEffect, Ref, ref } from 'vue'
+import { reactive, computed, watchEffect, Ref, ref, watch } from 'vue'
 import useStore from '../store/index'
 
 function turnToCaret() { useStore().caret = true; }
@@ -51,7 +51,13 @@ let searchUrl = computed(() => {
 
 // 搜索动作
 function doSearch(event?: KeyboardEvent) {
-  // console.log(searchUrl.value);
+  // for (let item of useStore().engines) {
+  //   if (state.searchStr.startsWith(item.command) || state.searchStr.startsWith(item.title)) {
+  //     useStore().selectEngine(item)
+  //     state.searchStr = ''
+  //     return
+  //   }
+  // }
   // 检查是否在中文输入法状态下按下的 enter
   event?.isComposing || window.open(searchUrl.value, '_blank')
 }
@@ -62,6 +68,17 @@ const input: Ref<HTMLElement | null> = ref(null);
 watchEffect(() => {
   if (useStore().engine) {
     input.value?.focus();
+  }
+})
+
+watch(() => state.searchStr, () => {
+  if (state.searchStr.startsWith('\\')) { return }
+  for (let item of useStore().engines) {
+    if (state.searchStr.startsWith(item.command + ' ') || state.searchStr.startsWith(item.title + ' ')) {
+      useStore().selectEngine(item)
+      state.searchStr = ''
+    }
+
   }
 })
 

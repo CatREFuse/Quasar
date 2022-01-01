@@ -6,6 +6,9 @@
       'background-color': props.chosen ? 'var(--accent-color)' : 'white'
     }"
     v-dot-hover
+    @mouseenter="showTool"
+    @mouseleave="dismissTool"
+    ref="label"
   >
     <div class="logo-container">
       <img
@@ -22,33 +25,64 @@
         color: props.chosen ? 'white' : 'var(--text-main)'
       }"
     >{{ props.title }}</p>
+    <tooltip
+      class="tooltip"
+      v-if="showTooltip"
+      :content="props.engine.command"
+      :style="{
+        left: `${labelWidth / 2 - 45}px`
+      }"
+    ></tooltip>
   </div>
 </template>
 
 <script setup lang='ts'>
 
+import { Ref, ref, onMounted } from 'vue'
 import useStore from '../store/index'
+import tooltip from './tooltip.vue'
+import { Engine } from '../model/Engine'
 
 const props = withDefaults(defineProps<{
   iconName?: string,
   title?: string,
   chosen?: boolean,
+  index: number,
+  engine: Engine,
 }>(), {
   iconName: 'baidu.svg',
   title: '百度',
   chosen: false,
 })
 
+let showTooltip = ref(false)
+
+function showTool() {
+  showTooltip.value = true
+}
+
+function dismissTool() {
+  showTooltip.value = false
+}
+
 defineEmits(['chose'])
 
-function hoverOn() { useStore().hover = true }
-function hoverOff() { useStore().hover = false }
+const label: Ref<HTMLElement | null> = ref(null)
+const labelWidth = ref(0)
 
+onMounted(() => {
+  labelWidth.value = label.value?.clientWidth || 0
+})
 
 </script>
 
 <style lang='scss' scoped>
+.tooltip {
+  position: absolute;
+  top: -72px;
+}
 .label {
+  position: relative;
   display: inline-flex;
   flex-direction: row;
   align-items: center;

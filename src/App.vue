@@ -112,8 +112,9 @@ function trigDebugMode() {
   align-items: center;
   justify-content: center;
   will-change: transform;
-  pointer-events: none;
   mix-blend-mode: difference;
+  pointer-events: none;
+
   padding: 0;
   z-index: 999;
 }
@@ -122,6 +123,7 @@ function trigDebugMode() {
   height: 15px;
   border-radius: 15px;
   background-color: white;
+
   z-index: 9999;
   pointer-events: none;
   transition: width 0.1s cubic-bezier(0.1, 0.28, 0.45, 0.75),
@@ -133,8 +135,8 @@ function trigDebugMode() {
 .clicked {
   width: 10px !important;
   height: 10px !important;
-  border-radius: 10px !important;
-  transition: width 0.2s cubic-bezier(0.1, 0.28, 0.45, 0.75),
+  border-radius: 50px !important;
+  transition: width 0.1s cubic-bezier(0.1, 0.28, 0.45, 0.75),
     height 0.12 cubic-bezier(0.1, 0.28, 0.45, 0.75);
 }
 
@@ -192,8 +194,8 @@ body {
 .bg_img {
   position: fixed;
   z-index: -1000;
-  right: -90px;
-  bottom: -40px;
+  right: -10px;
+  bottom: -10px;
   pointer-events: none;
   user-select: none;
   -webkit-user-select: none;

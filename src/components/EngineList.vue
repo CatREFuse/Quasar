@@ -1,12 +1,14 @@
 <template>
   <div class="list">
     <EngineLabel
-      v-for="(engine, index) in state.engines"
+      v-for="(engine, index) in useStore().engines"
       :key="index"
       :title="engine.title"
       :icon-name="engine.iconName"
+      :index="index"
       @chose="choseLabel($event, index)"
       :chosen="useStore().engine.title == engine.title"
+      :engine="engine"
     ></EngineLabel>
   </div>
 </template>
@@ -16,17 +18,12 @@ import EngineLabel from "./EngineLabel.vue";
 import { onMounted, reactive } from "vue";
 import axios from "axios";
 import useStore from "../store/index";
-import { Engine } from "../model/Engine";
-
-const state = reactive({
-  engines: Array<Engine>(),
-});
 
 onMounted(() => {
   axios
     .get("./engines.json")
     .then((res) => {
-      state.engines = res.data;
+      useStore().engines = res.data;
       useStore().engine = res.data[0];
     })
     .catch((err) => {
@@ -35,7 +32,7 @@ onMounted(() => {
 });
 
 function choseLabel(engineTitle: string, index: number) {
-  useStore().engine = state.engines[index];
+  useStore().selectEngineByIndex(index)
 }
 
 defineEmits(["engine-change"]);
