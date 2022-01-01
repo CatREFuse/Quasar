@@ -76,9 +76,9 @@ function resetCursor() {
       }"
     >
       <div
-        :class="{ cursor: true, hover: useStore().hover, clicked: useStore().mousedown }"
+        :class="{ cursor: true, hover: useStore().hover, clicked: useStore().mousedown, caret: useStore().caret }"
         :style="{
-          transform: `rotate(${cursorUI.degree}deg) scale(${cursorUI.grow}, 1)  `,
+          transform: useStore().caret ? 'none' : `rotate(${cursorUI.degree}deg) scale(${cursorUI.grow}, 1)  `,
         
         }"
       ></div>
@@ -130,6 +130,12 @@ function resetCursor() {
   height: 10px !important;
   transition: width 0.2s cubic-bezier(0.1, 0.28, 0.45, 0.75),
     height 0.12 cubic-bezier(0.1, 0.28, 0.45, 0.75);
+}
+
+.caret {
+  width: 4px !important;
+  height: 28px !important;
+  border-radius: 2px !important;
 }
 
 .hover {

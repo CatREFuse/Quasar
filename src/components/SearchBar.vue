@@ -12,6 +12,8 @@
         @keydown.enter="doSearch($event)"
         v-model="state.searchStr"
         ref="input"
+        @mouseenter="turnToCaret"
+        @mouseleave="turnToNormal"
       />
       <img src="../assets/icons/icon_right.svg" class="arrow" />
     </div>
@@ -21,6 +23,9 @@
 <script setup lang='ts'>
 import { reactive, computed, watchEffect, Ref, ref } from 'vue'
 import useStore from '../store/index'
+
+function turnToCaret() { useStore().caret = true; }
+function turnToNormal() { useStore().caret = false; }
 
 const props = defineProps({
   urlPattern: {

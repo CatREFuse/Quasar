@@ -14,6 +14,7 @@ export default defineStore({
             engine: new Engine('', '', '', false, ''),
             hover: false,
             mousedown: false,
+            caret: false,
         };
     },
 });
