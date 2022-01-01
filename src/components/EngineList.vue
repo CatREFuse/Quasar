@@ -11,36 +11,38 @@
   </div>
 </template>
 
-<script setup lang='ts'>
-import EngineLabel from './EngineLabel.vue';
-import { onMounted, reactive } from 'vue'
-import axios from 'axios'
-import useStore from '../store/index'
-import { Engine } from '../model/Engine'
-
+<script setup lang="ts">
+import EngineLabel from "./EngineLabel.vue";
+import { onMounted, reactive } from "vue";
+import axios from "axios";
+import useStore from "../store/index";
+import { Engine } from "../model/Engine";
 
 const state = reactive({
   engines: Array<Engine>(),
-})
+});
 
 onMounted(() => {
-  axios.get('./engines.json').then(res => {
-    state.engines = res.data
-    useStore().engine = res.data[0]
-  }).catch(err => {
-    alert(err)
-  })
-})
+  axios
+    .get("./engines.json")
+    .then((res) => {
+      state.engines = res.data;
+      useStore().engine = res.data[0];
+    })
+    .catch((err) => {
+      alert(err);
+    });
+});
 
 function choseLabel(engineTitle: string, index: number) {
-  useStore().engine = state.engines[index]
+  useStore().engine = state.engines[index];
 }
 
-defineEmits(['engine-change'])
+defineEmits(["engine-change"]);
 
 </script>
 
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 .list {
   display: flex;
   flex-direction: row;

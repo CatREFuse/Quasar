@@ -5,6 +5,8 @@
     :style="{
       'background-color': props.chosen ? 'var(--accent-color)' : 'white'
     }"
+    @mouseenter="hoverOn"
+    @mouseleave="hoverOff"
   >
     <div class="logo-container">
       <img
@@ -26,7 +28,7 @@
 
 <script setup lang='ts'>
 
-
+import useStore from '../store/index'
 
 const props = withDefaults(defineProps<{
   iconName?: string,
@@ -39,6 +41,9 @@ const props = withDefaults(defineProps<{
 })
 
 defineEmits(['chose'])
+
+function hoverOn() { useStore().hover = true }
+function hoverOff() { useStore().hover = false }
 
 
 </script>

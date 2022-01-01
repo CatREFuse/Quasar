@@ -12,6 +12,8 @@ export default defineStore({
             //     urlPattern: '',
             // },
             engine: new Engine('', '', '', false, ''),
+            hover: false,
+            mousedown: false,
         };
     },
 });
