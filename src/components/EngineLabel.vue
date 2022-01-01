@@ -25,14 +25,14 @@
         color: props.chosen ? 'white' : 'var(--text-main)'
       }"
     >{{ props.title }}</p>
-    <!-- <tooltip
+    <tooltip
       class="tooltip"
-      v-if="showTooltip"
-      :content="props.engine.command"
+      v-if="props.engine.loginRequire == 1 && showTooltip"
+      content="需要登录"
       :style="{
         left: `${labelWidth / 2 - 45}px`
       }"
-    ></tooltip>-->
+    ></tooltip>
   </div>
 </template>
 

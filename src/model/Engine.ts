@@ -2,7 +2,7 @@ interface Engine {
     title: string;
     iconName: string;
     command: string;
-    loginRequire: boolean;
+    loginRequire: number;
     urlPattern: string;
 }
 
@@ -10,13 +10,13 @@ class Engine implements Engine {
     title: string;
     iconName: string;
     command: string;
-    loginRequire: boolean;
+    loginRequire: number;
     urlPattern: string;
     constructor(
         title: string,
         iconName: string,
         command: string,
-        loginRequire: boolean,
+        loginRequire: number,
         urlPattern: string
     ) {
         this.title = title;
