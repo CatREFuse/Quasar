@@ -15,7 +15,7 @@
         @mouseenter="turnToCaret"
         @mouseleave="turnToNormal"
       />
-      <img src="../assets/icons/icon_right.svg" class="arrow" />
+      <img src="../assets/icons/icon_right.svg" class="arrow" v-dot-hover @click="doSearch()" />
     </div>
   </div>
 </template>
@@ -50,10 +50,10 @@ let searchUrl = computed(() => {
 })
 
 // 搜索动作
-function doSearch(event: KeyboardEvent) {
+function doSearch(event?: KeyboardEvent) {
   // console.log(searchUrl.value);
   // 检查是否在中文输入法状态下按下的 enter
-  event.isComposing || window.open(searchUrl.value, '_blank')
+  event?.isComposing || window.open(searchUrl.value, '_blank')
 }
 
 const input: Ref<HTMLElement | null> = ref(null);
@@ -72,6 +72,8 @@ watchEffect(() => {
 .search-logo {
   width: 24px;
   height: 24px;
+  user-select: none;
+  -webkit-user-drag: none;
 }
 
 .input {
@@ -103,6 +105,9 @@ watchEffect(() => {
 
   .arrow:hover {
     cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-user-drag: none;
   }
 }
 </style>

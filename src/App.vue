@@ -38,37 +38,35 @@ watch(() => state.visualCursor, (newValue, oldValue) => {
 
 })
 
-function moveHandler(event: MouseEvent) {
-  state.cursor = {
-    x: event.clientX,
-    y: event.clientY
-  }
-}
+
 
 onMounted(() => {
+
+  document.onmousemove = function moveHandler(event: MouseEvent) {
+    state.cursor = {
+      x: event.clientX,
+      y: event.clientY
+    }
+  }
+
+  document.onmousedown = () => { useStore().mousedown = true }
+  document.onmouseup = () => { useStore().mousedown = false }
+
   setInterval(() => {
     state.visualCursor = { x: state.cursor.x, y: state.cursor.y }
-
   }, 50)
 })
 
-function shrinkCursor() {
-  useStore().mousedown = true;
-}
 
-function resetCursor() {
-  useStore().mousedown = false;
+
+function trigDebugMode() {
+  useStore().debug = !useStore().debug;
 }
 
 </script>
 
 <template>
-  <div
-    class="main-container"
-    @mousemove="moveHandler($event)"
-    @mousedown="shrinkCursor"
-    @mouseup="resetCursor"
-  >
+  <div class="main-container">
     <div
       class="cursor-container"
       :style="{
@@ -79,18 +77,25 @@ function resetCursor() {
         :class="{ cursor: true, hover: useStore().hover, clicked: useStore().mousedown, caret: useStore().caret }"
         :style="{
           transform: useStore().caret ? 'none' : `rotate(${cursorUI.degree}deg) scale(${cursorUI.grow}, 1)  `,
-        
         }"
       ></div>
     </div>
 
     <Home></Home>
-    <img class="bg_img" src="./assets/quasar_logo_bg.svg" />
-    <!-- <div class="debugger">
-      <h4>debugger</h4>
-      <p>cursor: {{ state.cursor.x }}, {{ state.cursor.y }}</p>
-      <p>visualCusor: {{ state.visualCursor.x }}, {{ state.visualCursor.y }}</p>
-    </div>-->
+    <img
+      class="bg_img"
+      src="./assets/quasar_logo_bg.svg"
+      :style="{
+        transform: `none` || `translate(${-state.cursor.x / 80}px, ${-state.cursor.y / 80}px`,
+      }"
+    />
+    <div class="debugger">
+      <div class="debug-trigger" v-dot-hover @click="trigDebugMode"></div>
+      <div v-if="useStore().debug">
+        <h3>debugger</h3>
+        <p>cursor: {{ state.cursor.x }}, {{ state.cursor.y }}</p>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -128,14 +133,15 @@ function resetCursor() {
 .clicked {
   width: 10px !important;
   height: 10px !important;
+  border-radius: 10px !important;
   transition: width 0.2s cubic-bezier(0.1, 0.28, 0.45, 0.75),
     height 0.12 cubic-bezier(0.1, 0.28, 0.45, 0.75);
 }
 
 .caret {
-  width: 4px !important;
-  height: 28px !important;
-  border-radius: 2px !important;
+  width: 4px;
+  height: 24px;
+  border-radius: 2px;
 }
 
 .hover {
@@ -149,7 +155,6 @@ function resetCursor() {
 }
 
 .main-container {
-  min-height: 100vh;
   margin: 0;
   padding: 100px 0 0 160px;
 }
@@ -158,7 +163,18 @@ function resetCursor() {
   position: fixed;
   bottom: 16px;
   right: 16px;
-  width: 150px;
+  width: 200px;
+  font-family: "Fira Code", "Courier New", Courier, monospace;
+  h3 {
+    margin-bottom: 1rem;
+  }
+  .debug-trigger {
+    width: 48px;
+    height: 48px;
+    position: fixed;
+    top: 16px;
+    right: 16px;
+  }
 }
 
 body {
@@ -176,7 +192,8 @@ body {
 .bg_img {
   position: fixed;
   z-index: -1000;
-  right: 0;
-  bottom: 0;
+  right: -90px;
+  bottom: -40px;
+  pointer-events: none;
 }
 </style>

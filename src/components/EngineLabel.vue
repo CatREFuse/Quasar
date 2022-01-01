@@ -5,8 +5,7 @@
     :style="{
       'background-color': props.chosen ? 'var(--accent-color)' : 'white'
     }"
-    @mouseenter="hoverOn"
-    @mouseleave="hoverOff"
+    v-dot-hover
   >
     <div class="logo-container">
       <img

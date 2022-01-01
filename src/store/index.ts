@@ -15,6 +15,7 @@ export default defineStore({
             hover: false,
             mousedown: false,
             caret: false,
+            debug: false,
         };
     },
 });
