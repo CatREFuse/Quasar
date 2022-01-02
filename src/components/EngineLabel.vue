@@ -25,14 +25,6 @@
         color: props.chosen ? 'white' : 'var(--text-main)'
       }"
     >{{ props.title }}</p>
-    <tooltip
-      class="tooltip"
-      v-if="props.engine.loginRequire == 1 && showTooltip"
-      content="需要登录"
-      :style="{
-        left: `${labelWidth / 2 - 45}px`
-      }"
-    ></tooltip>
   </div>
 </template>
 
@@ -40,7 +32,7 @@
 
 import { Ref, ref, onMounted } from 'vue'
 import useStore from '../store/index'
-import tooltip from './tooltip.vue'
+
 import { Engine } from '../model/Engine'
 
 const props = withDefaults(defineProps<{

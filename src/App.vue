@@ -107,6 +107,7 @@ function trigDebugMode() {
         >Bad Strawberry</a>, All rights reserved.
       </p>
       <p>
+        <a href="https://www.craft.do/s/Gi8HESIcZQsSIY" target="_blank" v-dot-hover>用户协议</a> ·
         <a
           href="https://beian.miit.gov.cn/#/Integrated/index"
           target="_blank"
@@ -177,6 +178,8 @@ function trigDebugMode() {
 .main-container {
   margin: 0;
   padding: 100px 0 0 160px;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .debugger {
@@ -228,6 +231,9 @@ body {
   text-align: right;
 
   z-index: -1;
+
+  user-select: text;
+  -webkit-user-select: text;
 
   font-size: 14px;
   font-family: Avenir, "Pingfang SC";
