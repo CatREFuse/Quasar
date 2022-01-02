@@ -16,7 +16,6 @@ export default defineStore({
 
     state() {
         return <AppStateInterface>{
-            engine: new Engine('', '', '', false, ''),
             engines: [] as Engine[],
             hover: false,
             mousedown: false,
