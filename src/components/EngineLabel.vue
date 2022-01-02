@@ -1,7 +1,7 @@
 <template>
   <div
     class="label"
-    @click="$emit('chose', props.title)"
+    @click="selectEngine"
     :style="{
       'background-color': props.chosen ? 'var(--accent-color)' : 'white'
     }"
@@ -55,15 +55,15 @@ const props = withDefaults(defineProps<{
   chosen: false,
 })
 
-let showTooltip = ref(false)
+
 
 function showTool() {
-  showTooltip.value = true
+
   useStore().hoverEngine = props.engine
 }
 
 function dismissTool() {
-  showTooltip.value = false
+
   useStore().hoverEngine = undefined
 }
 
@@ -75,6 +75,10 @@ const labelWidth = ref(0)
 onMounted(() => {
   labelWidth.value = label.value?.clientWidth || 0
 })
+
+function selectEngine() {
+  useStore().selectEngine(props.engine)
+}
 
 </script>
 

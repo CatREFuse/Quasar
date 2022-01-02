@@ -105,6 +105,7 @@ watch(() => state.searchStr, () => {
 })
 
 watch(() => useStore().hoverEngine, (newValue, oldValue) => {
+
   if (state.searchStr != '') { return }
   if (newValue) {
     state.placeholder = `输入「${newValue.command}」可快速选择「${newValue.title}」`
