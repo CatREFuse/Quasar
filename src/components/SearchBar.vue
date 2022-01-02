@@ -89,7 +89,7 @@ watch(() => useStore().engine, () => {
 watch(() => state.searchStr, () => {
   if (state.searchStr.startsWith('\\')) { return }
   for (let item of useStore().engines) {
-    if (state.searchStr.startsWith(item.command) || state.searchStr.startsWith(item.title)) {
+    if (state.searchStr == item.command || state.searchStr == item.title) {
       state.tip = `按下空格选择「${item.title}」 ${(item.loginRequire == 1) ? ' / 需要登录' : ''}`
       break;
     } else { state.tip = '' }

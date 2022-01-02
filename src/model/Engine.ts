@@ -1,4 +1,5 @@
 interface Engine {
+    id: number;
     title: string;
     iconName: string;
     command: string;
@@ -7,6 +8,7 @@ interface Engine {
 }
 
 class Engine implements Engine {
+    id: number;
     title: string;
     iconName: string;
     command: string;
@@ -17,8 +19,10 @@ class Engine implements Engine {
         iconName: string,
         command: string,
         loginRequire: number,
-        urlPattern: string
+        urlPattern: string,
+        id: number
     ) {
+        this.id = id;
         this.title = title;
         this.iconName = iconName;
         this.command = command;
