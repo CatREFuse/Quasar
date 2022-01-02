@@ -24,7 +24,7 @@
       <img
         src="../assets/icons/icon_right.svg"
         class="arrow"
-        v-dot-hover="state.searchStr != ''"
+        v-dot-hover
         @click="doSearch()"
         :style="{
           opacity: state.searchStr == '' ? 0.3 : 1
