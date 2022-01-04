@@ -14,6 +14,8 @@
         ref="input"
         @mouseenter="turnToCaret"
         @mouseleave="turnToNormal"
+        @compositionstart="startComposing"
+        @compositionend="endComposing"
       />
       <p
         class="tip"
@@ -31,6 +33,8 @@
         }"
         @mouseenter="showClickTip"
         @mouseleave="dismissClickTip"
+        @compositionstart="startComposing"
+        @compositionend="endComposing"
       />
     </div>
   </div>
@@ -61,7 +65,8 @@ const props = defineProps({
 const state = reactive({
   tip: '',
   searchStr: '',
-  placeholder: ''
+  placeholder: '',
+  isComposing: false,
 })
 
 // 实时生成搜索 URL（其实这里可以在 press enter 之后再生成）
@@ -69,11 +74,27 @@ let searchUrl = computed(() => {
   return props.urlPattern.replace('{query}', state.searchStr)
 })
 
+function startComposing() {
+  // 兼容 Safari
+  state.isComposing = true
+
+}
+
+function endComposing() {
+  // 按回车之后是先触发 @compostionend 然后再触发 @keydown.enter, 因此加个延迟
+  setTimeout(() => {
+    state.isComposing = false
+  }, 10)
+
+}
+
 // 搜索动作
 function doSearch(event?: KeyboardEvent) {
   if (state.searchStr == '') { return }
   // 检查是否在中文输入法状态下按下的 enter
-  if (!event?.isComposing) {
+  console.log(state.isComposing);
+
+  if (!state.isComposing) {
     const engine = useStore().engine
     axios.post('http://127.0.0.1:5000/add-record', {
       title: engine?.title,
