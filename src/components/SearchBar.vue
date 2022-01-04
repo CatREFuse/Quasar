@@ -91,12 +91,12 @@ function endComposing() {
 // 搜索动作
 function doSearch(event?: KeyboardEvent) {
   if (state.searchStr == '') { return }
-  // 检查是否在中文输入法状态下按下的 enter
-  console.log(state.isComposing);
 
+  // 检查是否在中文输入法状态下按下的 enter
   if (!state.isComposing) {
     const engine = useStore().engine
-    axios.post('http://127.0.0.1:5000/add-record', {
+
+    process.env.NODE_ENV == 'development' || axios.post('http://127.0.0.1:5000/add-record', {
       title: engine?.title,
       url_pattern: engine?.urlPattern,
       engine_id: engine?.id,
