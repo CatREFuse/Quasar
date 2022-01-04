@@ -5,6 +5,7 @@ interface Engine {
     command: string;
     loginRequire: number;
     urlPattern: string;
+    tags: string;
 }
 
 class Engine implements Engine {
@@ -14,13 +15,15 @@ class Engine implements Engine {
     command: string;
     loginRequire: number;
     urlPattern: string;
+    tags: string;
     constructor(
         title: string,
         iconName: string,
         command: string,
         loginRequire: number,
         urlPattern: string,
-        id: number
+        id: number,
+        tags: string
     ) {
         this.id = id;
         this.title = title;
@@ -28,6 +31,7 @@ class Engine implements Engine {
         this.command = command;
         this.loginRequire = loginRequire;
         this.urlPattern = urlPattern;
+        this.tags = tags;
     }
 }
 

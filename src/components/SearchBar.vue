@@ -39,6 +39,7 @@
 <script setup lang='ts'>
 import { reactive, computed, watchEffect, Ref, ref, watch, onMounted } from 'vue'
 import useStore from '../store/index'
+import axios from 'axios'
 
 function turnToCaret() { useStore().caret = true; }
 function turnToNormal() { useStore().caret = false; }
@@ -72,7 +73,24 @@ let searchUrl = computed(() => {
 function doSearch(event?: KeyboardEvent) {
   if (state.searchStr == '') { return }
   // 检查是否在中文输入法状态下按下的 enter
-  event?.isComposing || window.open(searchUrl.value, '_blank')
+  if (!event?.isComposing) {
+    const engine = useStore().engine
+    axios.post('http://127.0.0.1:5000/add-record', {
+      title: engine?.title,
+      url_pattern: engine?.urlPattern,
+      engine_id: engine?.id,
+      tags: engine?.tags,
+      search_string: state.searchStr,
+    }).then().catch(err => console.error(err))
+
+
+    window.open(searchUrl.value, '_blank')
+
+  }
+
+
+
+
 }
 
 

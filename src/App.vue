@@ -14,7 +14,7 @@ const state = reactive({
     x: 0, y: 0
   },
   visualCursor: {
-    x: 0, y: 0,
+    x: 0, y: 0
   },
 })
 
