@@ -44,5 +44,13 @@
 {"title":"豆瓣电影","id":"21","iconName":"douban_movie.svg","command":"dbm","loginRequire":"0","tags":"电影","urlPattern":"https://movie.douban.com/subject_search?search_text={query}"}
 ,
 {"title":"少数派","id":"22","iconName":"sspai.svg","command":"ss","loginRequire":"0","tags":"知识","urlPattern":"https://sspai.com/search/article?q={query}"}
+,
+{"title":"必应","id":"23","iconName":"bing.svg","command":"bi","loginRequire":"0","tags":"通用","urlPattern":"https://cn.bing.com/search?q={query}&search=&form=QBLH&sp=-1&pq=1&sc=0-1&qs=n&sk=&cvid=4FB32657F54D423B85A31C0CA83CBAC7"}
+,
+{"title":"iconfont","id":"24","iconName":"iconfont.svg","command":"ic","loginRequire":"0","tags":"设计,图片","urlPattern":"https://www.iconfont.cn/search/index?searchType=icon&q={query}"}
+,
+{"title":"Amazon","id":"25","iconName":"amazon.svg","command":"am","loginRequire":"0","tags":"购物","urlPattern":"https://www.amazon.cn/s?k={query}"}
+,
+{"title":"高德地图","id":"26","iconName":"amap.svg","command":"gd","loginRequire":"0","tags":"地图","urlPattern":"https://www.amap.com/search?query={query}&city=330000&geoobj=119.431115%7C29.775313%7C121.525439%7C30.849227&zoom=9.44"}
 
 ]

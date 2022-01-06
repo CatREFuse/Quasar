@@ -96,14 +96,13 @@ function doSearch(event?: KeyboardEvent) {
   if (!state.isComposing) {
     const engine = useStore().engine
 
-    process.env.NODE_ENV == 'development' || axios.post('http://127.0.0.1:5000/add-record', {
+    axios.post('http://127.0.0.1:5000/add-record', {
       title: engine?.title,
       url_pattern: engine?.urlPattern,
       engine_id: engine?.id,
       tags: engine?.tags,
       search_string: state.searchStr,
     }).then().catch(err => console.error(err))
-
 
     window.open(searchUrl.value, '_blank')
 

@@ -22,3 +22,7 @@ DeepL,17,deepl.svg,dl,0,翻译,https://www.deepl.com/translator#en/zh/{query}
 京东,20,jd.svg,jd,0,购物,https://search.jd.com/Search?keyword={query}
 豆瓣电影,21,douban_movie.svg,dbm,0,电影,https://movie.douban.com/subject_search?search_text={query}
 少数派,22,sspai.svg,ss,0,知识,https://sspai.com/search/article?q={query}
+必应,23,bing.svg,bi,0,通用,https://cn.bing.com/search?q={query}&search=&form=QBLH&sp=-1&pq=1&sc=0-1&qs=n&sk=&cvid=4FB32657F54D423B85A31C0CA83CBAC7
+iconfont,24,iconfont.svg,ic,0,"设计,图片",https://www.iconfont.cn/search/index?searchType=icon&q={query}
+Amazon,25,amazon.svg,am,0,购物,https://www.amazon.cn/s?k={query}
+高德地图,26,amap.svg,gd,0,地图,https://www.amap.com/search?query={query}&city=330000&geoobj=119.431115%7C29.775313%7C121.525439%7C30.849227&zoom=9.44
