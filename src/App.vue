@@ -112,7 +112,7 @@ function trigDebugMode() {
           href="https://beian.miit.gov.cn/#/Integrated/index"
           target="_blank"
           v-dot-hover
-        >浙 ICP 备 2020033146 号</a>
+        >浙 ICP 备 2020033146 号 - 2</a>
       </p>
     </div>
   </div>
