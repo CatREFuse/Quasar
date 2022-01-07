@@ -96,7 +96,7 @@ function doSearch(event?: KeyboardEvent) {
   if (!state.isComposing) {
     const engine = useStore().engine
 
-    axios.post('http://api.catrefuse.com/add-record', {
+    axios.post('https://api.catrefuse.com/add-record', {
       title: engine?.title,
       url_pattern: engine?.urlPattern,
       engine_id: engine?.id,
