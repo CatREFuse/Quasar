@@ -96,13 +96,18 @@ function doSearch(event?: KeyboardEvent) {
   if (!state.isComposing) {
     const engine = useStore().engine
 
-    axios.post('http://127.0.0.1:5000/add-record', {
+    axios.post('http://api.catrefuse.com/add-record', {
       title: engine?.title,
       url_pattern: engine?.urlPattern,
       engine_id: engine?.id,
       tags: engine?.tags,
       search_string: state.searchStr,
-    }).then().catch(err => console.error(err))
+    }).then(res => {
+      if (process.env.NODE_ENV !== 'production') {
+        console.log(res)
+      }
+    }
+    ).catch(err => console.error(err))
 
     window.open(searchUrl.value, '_blank')
 
