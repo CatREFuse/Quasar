@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia';
 import { Engine } from '../model/Engine';
+import axios from 'axios';
 
 interface AppStateInterface {
     engine?: Engine;
@@ -27,7 +28,24 @@ export default defineStore({
     actions: {
         doSearch(query: string): void {
             const url = this.engine?.urlPattern.replace('{query}', query);
+            this.postRecord(query, this.engine!);
             window.location.href = url || ' ';
+        },
+        postRecord(query: string, engine: Engine): void {
+            axios
+                .post('https://api.catrefuse.com/add-record', {
+                    title: engine.title,
+                    url_pattern: engine.urlPattern,
+                    engine_id: engine.id,
+                    tags: engine.tags,
+                    search_string: query,
+                })
+                .then((res) => {
+                    if (process.env.NODE_ENV !== 'production') {
+                        console.log(res);
+                    }
+                })
+                .catch((err) => console.error(err));
         },
         switchEngineByAdd(step: number): void {
             let currentIndex = 0;
