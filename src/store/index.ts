@@ -26,13 +26,13 @@ export default defineStore({
         };
     },
     actions: {
-        doSearch(query: string): void {
+        async doSearch(query: string): Promise<void> {
             const url = this.engine?.urlPattern.replace('{query}', query);
-            this.postRecord(query, this.engine!);
+            await this.postRecord(query, this.engine!);
             window.location.href = url || ' ';
         },
-        postRecord(query: string, engine: Engine): void {
-            axios
+        async postRecord(query: string, engine: Engine): Promise<void> {
+            await axios
                 .post('https://api.catrefuse.com/add-record', {
                     title: engine.title,
                     url_pattern: engine.urlPattern,
