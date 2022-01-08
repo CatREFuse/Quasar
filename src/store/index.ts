@@ -25,6 +25,10 @@ export default defineStore({
         };
     },
     actions: {
+        doSearch(query: string): void {
+            const url = this.engine?.urlPattern.replace('{query}', query);
+            window.location.href = url || ' ';
+        },
         switchEngineByAdd(step: number): void {
             let currentIndex = 0;
             for (let index = 0; index < this.engines.length; index++) {

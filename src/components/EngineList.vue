@@ -15,21 +15,7 @@
 
 <script setup lang="ts">
 import EngineLabel from "./EngineLabel.vue";
-import { onMounted, reactive } from "vue";
-import axios from "axios";
 import useStore from "../store/index";
-
-onMounted(() => {
-  axios
-    .get("./engines.json")
-    .then((res) => {
-      useStore().engines = res.data;
-      useStore().engine = res.data[0];
-    })
-    .catch((err) => {
-      alert(err);
-    });
-});
 
 function choseLabel(engineTitle: string, index: number) {
   useStore().selectEngineByIndex(index)

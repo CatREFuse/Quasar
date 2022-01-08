@@ -1,9 +1,9 @@
 <script setup lang="ts">
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
-import Home from './views/Home.vue'
 import { onMounted, reactive, watch } from 'vue'
 import useStore from './store/index'
+import { getEngineList } from './query/query'
 
 onMounted(() => {
   document.title = "Quasar"
@@ -41,6 +41,8 @@ watch(() => state.visualCursor, (newValue, oldValue) => {
 
 
 onMounted(() => {
+
+  getEngineList()
 
   document.onmousemove = function moveHandler(event: MouseEvent) {
     state.cursor = {
@@ -81,7 +83,7 @@ function trigDebugMode() {
       ></div>
     </div>
 
-    <Home></Home>
+    <router-view></router-view>
     <img
       class="bg_img"
       src="./assets/quasar_logo_bg.svg"

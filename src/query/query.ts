@@ -1,11 +1,15 @@
-import engines from '../../public/engines.json';
+import '../model/Engine';
+import useStore from '../store/index';
+import axios from 'axios';
 
-interface Engine {
-    title: String;
-    iconName: String;
-    urlPattern: String;
-}
-
-export function queryEngines(): Array<Engine> {
-    return engines;
+export function getEngineList() {
+    axios
+        .get('./engines.json')
+        .then((res) => {
+            useStore().engines = res.data;
+            useStore().engine = res.data[0];
+        })
+        .catch((err) => {
+            console.error(err.message);
+        });
 }
