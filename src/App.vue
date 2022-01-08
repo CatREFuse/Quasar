@@ -106,7 +106,7 @@ function trigDebugMode() {
           href="http:///bad-strawberry.com"
           v-dot-hover
           target="_blank"
-        >Bad Strawberry</a>, All rights reserved.
+        >Bad Strawberry</a>. All rights reserved.
       </p>
       <p>
         <a href="https://www.craft.do/s/Gi8HESIcZQsSIY" target="_blank" v-dot-hover>用户协议</a> ·

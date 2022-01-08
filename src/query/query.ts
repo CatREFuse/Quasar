@@ -4,7 +4,7 @@ import axios from 'axios';
 
 export function getEngineList() {
     axios
-        .get('./engines.json')
+        .get('https://cdn.catrefuse.com/engines.json')
         .then((res) => {
             useStore().engines = res.data;
             useStore().engine = res.data[0];
