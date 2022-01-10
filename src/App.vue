@@ -4,9 +4,32 @@
 import { onMounted, reactive, watch } from 'vue'
 import useStore from './store/index'
 import { getEngineList } from './query/query'
+import { Device, Theme } from './model/Setting';
+
+function setDeviceClass() {
+  // 根据 window.innerWidth 设置 DeviceClass
+  useStore().deviceClass = window.innerWidth >= 700 ? Device.desktop : Device.phone
+}
+
+function setThemeClassWithSystem() {
+  // 根据 window.matchMedia 设置 setThemeClass
+  useStore().systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? Theme.dark : Theme.light;
+}
 
 onMounted(() => {
-  document.title = "Quasar"
+  // 窗口宽度监听功能
+  setDeviceClass();
+  window.addEventListener('resize', () => {
+    setDeviceClass();
+  })
+
+  // 系统主题查询
+  setThemeClassWithSystem()
+  // 监听系统主题是否发生变化
+  window.matchMedia("(prefers-color-scheme: dark)")
+    .addEventListener('change', () => {
+      setThemeClassWithSystem();
+    })
 })
 
 const state = reactive({
@@ -96,6 +119,8 @@ function trigDebugMode() {
       <div v-if="useStore().debug">
         <h3>debugger</h3>
         <p>cursor: {{ state.cursor.x }}, {{ state.cursor.y }}</p>
+        <p>deviceClass: {{ useStore().deviceClass }}</p>
+        <p>systemTheme: {{ useStore().systemTheme }}</p>
       </div>
     </div>
 
@@ -121,6 +146,8 @@ function trigDebugMode() {
 </template>
 
 <style lang="scss">
+@import "./css/transition.scss";
+
 .cursor-container {
   position: fixed;
   top: 0;

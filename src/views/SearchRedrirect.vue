@@ -5,7 +5,7 @@
 <script setup lang='ts'>
 
 import useStore from '../store/index'
-import { onMounted, ref } from 'vue';
+import { onBeforeMount, ref } from 'vue';
 import { useRoute } from 'vue-router';
 
 const props = defineProps<{
@@ -15,7 +15,7 @@ const props = defineProps<{
 
 let searched = ref(false)
 
-onMounted(() => {
+onBeforeMount(() => {
   if (!searched.value) {
     useStore().selectEngineByCommand(props.engine || 'bd')
     useStore().doSearch(props.query || '')

@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia';
 import { Engine } from '../model/Engine';
 import axios from 'axios';
+import { Device, Theme } from '../model/Setting';
 
 interface AppStateInterface {
     engine?: Engine;
@@ -10,6 +11,8 @@ interface AppStateInterface {
     debug: boolean;
     caret: boolean;
     hoverEngine?: Engine;
+    deviceClass: Device;
+    systemTheme: Theme;
 }
 
 export default defineStore({
@@ -23,6 +26,8 @@ export default defineStore({
             mousedown: false,
             caret: false,
             debug: false,
+            deviceClass: Device.desktop,
+            systemTheme: Theme.light,
         };
     },
     actions: {
