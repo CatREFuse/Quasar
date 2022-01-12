@@ -130,7 +130,7 @@ function trigDebugMode() {
     </div>
 
     <div
-      class="fixed bottom-6 right-[28px] text-right z-[-1] select-text text-[14px] mt-4 font-medium text-gray-400"
+      class="fixed bottom-6 right-[28px] text-right z-[-1] select-text text-[14px] mt-4 font-medium opacity-30"
       v-if="!useStore().debug"
       v-text-hover
     >
@@ -140,7 +140,7 @@ function trigDebugMode() {
           href="http:///bad-strawberry.com"
           v-dot-hover
           target="_blank"
-          class="text-gray-400 decoration-none hover:underline"
+          class="decoration-none hover:underline"
         >Bad Strawberry</a>. All rights reserved.
       </p>
       <p>
@@ -231,5 +231,4 @@ body {
   background-color: var(--body-base);
   font-family: Avenir, "Pingfang SC", Helvetica, sans-serif;
 }
-
 </style>
