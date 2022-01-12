@@ -130,7 +130,7 @@ function trigDebugMode() {
     </div>
 
     <div
-      class="fixed bottom-6 right-[28px] text-right z-[-1] select-text text-[14px] mt-4 font-medium opacity-30"
+      class="fixed bottom-6 right-[28px] text-right z-[100] select-text text-[14px] mt-4 font-medium opacity-30"
       v-if="!useStore().debug"
       v-text-hover
     >
