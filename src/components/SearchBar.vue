@@ -1,13 +1,15 @@
 <template>
-  <div class="container">
-    <div class="input">
+  <div class="w-full">
+    <div
+      class="flex flex-row items-center h-14 w-full gap-2 py-0 pl-4 pr-2 rounded-[16px] bg-white"
+    >
       <img
         :src="`https://gitee.com/CatREFuse/img-base/raw/master/icons/${iconName}`"
-        class="search-logo"
+        class="w-6 h-6 select-none"
       />
       <input
         type="text"
-        class="text_input"
+        class="w-full h-15 font-bold placeholder:text-gray-300 placeholder:font-bold outline-none"
         :placeholder="state.placeholder"
         @keydown.enter="doSearch($event)"
         v-model="state.searchStr"
@@ -18,14 +20,14 @@
         @compositionend="endComposing"
       />
       <p
-        class="tip"
+        class="text-xs font-medium"
         :style="{
           color: state.tip == '点击以搜索' ? 'var(--text-mian)' : 'var(--text-disabled)'
         }"
       >{{ state.tip }}</p>
       <img
         src="../assets/icons/icon_right.svg"
-        class="arrow"
+        class="select-none hover:cursor-pointer"
         v-dot-hover
         @click="doSearch()"
         :style="{
@@ -156,59 +158,3 @@ function dismissClickTip() {
 
 
 </script>
-
-<style lang='scss' scoped>
-.search-logo {
-  width: 24px;
-  height: 24px;
-  user-select: none;
-  -webkit-user-drag: none;
-}
-
-.input {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 4px;
-  background-color: white;
-  border-radius: 16px;
-  padding: 0px 8px 0px 16px;
-  width: 552px;
-  height: 60px;
-
-  font-size: 17px;
-  .text_input {
-    outline: none;
-    border: none;
-    background-color: none;
-    flex-grow: 1;
-    font-family: Avenir, "Pingfang SC", sans-serif;
-    font-weight: 800;
-    font-size: 17px;
-    color: var(--text-main);
-  }
-
-  .text_input::-webkit-input-placeholder {
-    color: var(--text-disabled);
-  }
-
-  .tip {
-    font-size: 14px;
-    color: var(--text-disabled);
-    font-weight: 600;
-  }
-
-  .arrow:hover {
-    cursor: pointer;
-    user-select: none;
-    -webkit-user-select: none;
-    -webkit-user-drag: none;
-  }
-
-  .arrow {
-    user-select: none;
-    -webkit-user-select: none;
-    -webkit-user-drag: none;
-  }
-}
-</style>

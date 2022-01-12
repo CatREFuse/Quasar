@@ -1,6 +1,6 @@
 <template>
   <div
-    class="label"
+    class="relative inline-flex items-center gap-2 py-0 px-4 bg-white rounded-2xl h-12 transition-all select-none hover:drop-shadow-2xl hover:transition-all hover:cursor-pointer group"
     @click="selectEngine"
     :style="{
       'background-color': props.chosen ? 'var(--accent-color)' : 'white'
@@ -10,7 +10,7 @@
     @mouseleave="dismissTool"
     ref="label"
   >
-    <div class="logo-container">
+    <div class="w-6 h-6 overflow-hidden">
       <img
         :class="{
           white: props.chosen,
@@ -20,7 +20,7 @@
     </div>
 
     <p
-      class="title"
+      class="font-bold text-[17px]"
       :style="{
         color: props.chosen ? 'white' : 'var(--text-main)'
       }"
@@ -74,51 +74,8 @@ function selectEngine() {
 
 </script>
 
-<style lang='scss' scoped>
-.tooltip {
-  position: absolute;
-  top: -72px;
-}
-.label {
-  position: relative;
-  display: inline-flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 8px;
-  padding: 0 16px;
-
-  background: #ffffff;
-  border-radius: 16px;
-
-  height: 48px;
-
-  transition: all 0.1s ease-in-out;
-
-  user-select: none;
-  -webkit-user-select: none;
-
-  .logo-container {
-    width: 24px;
-    height: 24px;
-    overflow: hidden;
-    .white {
-      filter: brightness(0%) invert(100%);
-    }
-  }
-
-  .title {
-    font-weight: 600;
-    font-size: 17px;
-    line-height: 22px;
-    color: var(--text-main);
-  }
-}
-
-.label:hover {
-  box-shadow: var(--drop-shadow);
-
-  transition: all 0.1s ease-in-out;
-
-  cursor: pointer;
+<style lang='css' scoped>
+.white {
+  filter: brightness(0%) invert(100%);
 }
 </style>

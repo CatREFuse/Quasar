@@ -1,13 +1,12 @@
 <template>
-  <div class="search-container" @keydown.tab.prevent="switchEngine($event)">
-    <img src="../assets/quasar_logo.svg" class="logo" />
+  <div class="flex flex-col gap-6" @keydown.tab.prevent="switchEngine($event)">
+    <img src="../assets/quasar_logo.svg" class="w-60 select-none" />
     <SearchBar
-      class="search-bar"
+      class="w-full"
       :iconName="useStore().engine?.iconName"
       :url-pattern="useStore().engine?.urlPattern"
     />
     <EngineList></EngineList>
-   
   </div>
 </template>
 
@@ -22,18 +21,3 @@ function switchEngine(event?: KeyboardEvent) {
 }
 
 </script>
-
-<style lang='scss'>
-.logo {
-  width: 240px;
-  user-select: none;
-  -webkit-user-drag: none;
-}
-.search-container {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-
-
-</style>

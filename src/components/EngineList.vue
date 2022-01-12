@@ -1,5 +1,5 @@
 <template>
-  <div class="list">
+  <div class="flex flex-row items-start p-0 gap-4 flex-wrap w-full user-select-none">
     <EngineLabel
       v-for="(engine, index) in useStore().engines"
       :key="index"
@@ -25,14 +25,4 @@ defineEmits(["engine-change"]);
 
 </script>
 
-<style lang="scss" scoped>
-.list {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  padding: 0px;
-  gap: 16px;
-  flex-wrap: wrap;
-  width: 576px;
-}
-</style>
+

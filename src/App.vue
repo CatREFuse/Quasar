@@ -91,7 +91,7 @@ function trigDebugMode() {
 </script>
 
 <template>
-  <div class="main-container">
+  <div class="grid grid-cols-12 gap-2 text-gray-800">
     <div
       class="cursor-container"
       :style="{
@@ -105,40 +105,56 @@ function trigDebugMode() {
         }"
       ></div>
     </div>
-
     <router-view></router-view>
+
     <img
-      class="bg_img"
+      class="fixed z-[-1000] -right-1 -bottom-1 pointer-events-none"
       src="./assets/quasar_logo_bg.svg"
       :style="{
         transform: `none` || `translate(${-state.cursor.x / 80}px, ${-state.cursor.y / 80}px`,
       }"
     />
-    <div class="debugger">
-      <div class="debug-trigger" v-dot-hover @click="trigDebugMode"></div>
+
+    <div class="fixed bottom-4 right-4 width-[200px] font-['Fira_Code']">
+      <div
+        class="fixed top-1 right-1 w-12 h-12 hover:cursor-pointer"
+        v-dot-hover
+        @click="trigDebugMode"
+      ></div>
       <div v-if="useStore().debug">
-        <h3>debugger</h3>
+        <h3 class="mb-1">debugger</h3>
         <p>cursor: {{ state.cursor.x }}, {{ state.cursor.y }}</p>
         <p>deviceClass: {{ useStore().deviceClass }}</p>
         <p>systemTheme: {{ useStore().systemTheme }}</p>
       </div>
     </div>
 
-    <div class="footer" v-if="!useStore().debug" v-text-hover>
-      <p>
+    <div
+      class="fixed bottom-6 right-[28px] text-right z-[-1] select-text text-[14px] mt-4 font-medium text-gray-400"
+      v-if="!useStore().debug"
+      v-text-hover
+    >
+      <p class="my-2">
         © 2020 - 2021 🍓
         <a
           href="http:///bad-strawberry.com"
           v-dot-hover
           target="_blank"
+          class="text-gray-400 decoration-none hover:underline"
         >Bad Strawberry</a>. All rights reserved.
       </p>
       <p>
-        <a href="https://www.craft.do/s/Gi8HESIcZQsSIY" target="_blank" v-dot-hover>用户协议</a> ·
+        <a
+          href="https://www.craft.do/s/Gi8HESIcZQsSIY"
+          target="_blank"
+          v-dot-hover
+          class="decoration-none hover:underline"
+        >用户协议</a> ·
         <a
           href="https://beian.miit.gov.cn/#/Integrated/index"
           target="_blank"
           v-dot-hover
+          class="decoration-none hover:underline"
         >浙 ICP 备 2020033146 号 - 2</a>
       </p>
     </div>
@@ -204,31 +220,6 @@ function trigDebugMode() {
   border-radius: 25px;
 }
 
-.main-container {
-  margin: 0;
-  padding: 100px 0 0 160px;
-  user-select: none;
-  -webkit-user-select: none;
-}
-
-.debugger {
-  position: fixed;
-  bottom: 16px;
-  right: 16px;
-  width: 200px;
-  font-family: "Fira Code", "Courier New", Courier, monospace;
-  h3 {
-    margin-bottom: 1rem;
-  }
-  .debug-trigger {
-    width: 48px;
-    height: 48px;
-    position: fixed;
-    top: 16px;
-    right: 16px;
-  }
-}
-
 body {
   --body-base: #f5f5f5;
   --text-main: rgba(0, 0, 0, 0.75);
@@ -241,45 +232,4 @@ body {
   font-family: Avenir, "Pingfang SC", Helvetica, sans-serif;
 }
 
-.bg_img {
-  position: fixed;
-  z-index: -1000;
-  right: -10px;
-  bottom: -10px;
-  pointer-events: none;
-  user-select: none;
-  -webkit-user-select: none;
-  -webkit-user-drag: none;
-}
-
-.footer {
-  position: fixed;
-  bottom: 24px;
-  right: 28px;
-
-  text-align: right;
-
-  z-index: -1;
-
-  user-select: text;
-  -webkit-user-select: text;
-
-  font-size: 14px;
-  font-family: Avenir, "Pingfang SC";
-  color: var(--text-disabled);
-  margin-top: 16px;
-  font-weight: 500;
-  // font-style: italic;
-  p {
-    margin: 8px 0;
-    padding: 0;
-  }
-  a {
-    color: var(--text-disabled);
-    text-decoration: none;
-  }
-  a:hover {
-    text-decoration: underline;
-  }
-}
 </style>
