@@ -21,6 +21,7 @@
       @mouseleave="turnToNormal"
       @compositionstart="startComposing"
       @compositionend="endComposing"
+      autocorrect="off"
     />
     <p
       class="text-xs font-medium text-right whitespace-nowrap"
