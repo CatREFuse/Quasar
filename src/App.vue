@@ -110,7 +110,8 @@ function trigDebugMode() {
     <router-view class="mb-8"></router-view>
 
     <img
-      class="fixed z-[-1000] -right-1 -bottom-1 pointer-events-none"
+      name="background-img"
+      class="fixed z-[-1000] -right-1 -bottom-1 pointer-events-none select-none"
       src="./assets/quasar_logo_bg.svg"
       :style="{
         transform: `none` || `translate(${-state.cursor.x / 80}px, ${-state.cursor.y / 80}px`,

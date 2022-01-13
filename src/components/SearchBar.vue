@@ -1,6 +1,6 @@
 <template>
   <div
-    class="inline-flex flex-row items-center h-14 w-full gap-2 py-0 pl-4 pr-2 rounded-[1rem] bg-white text-sm md:text-base align-middle sticky top-4 z-[1000] transition-shadow"
+    class="inline-flex flex-row items-center h-14 w-full gap-2 py-0 pl-4 pr-2 rounded-[1rem] bg-white text-sm md:text-base align-middle sticky top-4 z-[500] transition-shadow"
     :class="{
       'shadow-2xl': searchbarTop <= 4 * 4
     }"
