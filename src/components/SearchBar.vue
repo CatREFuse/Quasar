@@ -1,44 +1,46 @@
 <template>
-  <div class="w-full">
-    <div
-      class="inline-flex flex-row items-center h-14 w-full gap-2 py-0 pl-4 pr-2 rounded-[1rem] bg-white text-sm md:text-base align-middle sticky top-2 md:static"
-    >
-      <img
-        :src="`https://gitee.com/CatREFuse/img-base/raw/master/icons/${iconName}`"
-        class="w-6 h-6 select-none"
-      />
-      <input
-        type="text"
-        class="h-14 font-bold w-full placeholder:text-gray-300 placeholder:font-bold outline-none"
-        :placeholder="state.placeholder"
-        @keydown.enter="doSearch($event)"
-        v-model="state.searchStr"
-        ref="input"
-        @mouseenter="turnToCaret"
-        @mouseleave="turnToNormal"
-        @compositionstart="startComposing"
-        @compositionend="endComposing"
-      />
-      <p
-        class="text-xs font-medium text-right whitespace-nowrap"
-        :style="{
-          color: state.tip == '点击以搜索' ? 'var(--text-mian)' : 'var(--text-disabled)'
-        }"
-      >{{ state.tip }}</p>
-      <img
-        src="../assets/icons/icon_right.svg"
-        class="select-none hover:cursor-pointer w-8 h-8"
-        v-dot-hover
-        @click="doSearch()"
-        :style="{
-          opacity: state.searchStr == '' ? 0.3 : 1
-        }"
-        @mouseenter="showClickTip"
-        @mouseleave="dismissClickTip"
-        @compositionstart="startComposing"
-        @compositionend="endComposing"
-      />
-    </div>
+  <div
+    class="inline-flex flex-row items-center h-14 w-full gap-2 py-0 pl-4 pr-2 rounded-[1rem] bg-white text-sm md:text-base align-middle sticky top-4 z-[1000] transition-shadow"
+    :class="{
+      'shadow-2xl': searchbarTop <= 4 * 4
+    }"
+    ref="searchbar"
+  >
+    <img
+      :src="`https://gitee.com/CatREFuse/img-base/raw/master/icons/${iconName}`"
+      class="w-6 h-6 select-none"
+    />
+    <input
+      type="text"
+      class="h-14 font-bold w-full placeholder:text-gray-300 placeholder:font-bold outline-none"
+      :placeholder="state.placeholder"
+      @keydown.enter="doSearch($event)"
+      v-model="state.searchStr"
+      ref="input"
+      @mouseenter="turnToCaret"
+      @mouseleave="turnToNormal"
+      @compositionstart="startComposing"
+      @compositionend="endComposing"
+    />
+    <p
+      class="text-xs font-medium text-right whitespace-nowrap"
+      :style="{
+        color: state.tip == '点击以搜索' ? 'var(--text-mian)' : 'var(--text-disabled)'
+      }"
+    >{{ state.tip }}</p>
+    <img
+      src="../assets/icons/icon_right.svg"
+      class="select-none hover:cursor-pointer w-8 h-8"
+      v-dot-hover
+      @click="doSearch()"
+      :style="{
+        opacity: state.searchStr == '' ? 0.3 : 1
+      }"
+      @mouseenter="showClickTip"
+      @mouseleave="dismissClickTip"
+      @compositionstart="startComposing"
+      @compositionend="endComposing"
+    />
   </div>
 </template>
 
@@ -110,15 +112,26 @@ function doSearch(event?: KeyboardEvent) {
 }
 
 
+// 切换引擎后不丢失输入框 focus
 const input: Ref<HTMLElement | null> = ref(null);
-
-
 
 watch(() => useStore().engine, () => {
 
   setTimeout(() => input.value?.focus(), 100)
 
 })
+
+// 获取 searchbar 引用
+const searchbar: Ref<HTMLElement | null> = ref(null);
+let searchbarTop = ref(100);
+
+onMounted(() => {
+  // 判断搜索框是不是到了顶部
+  window.addEventListener('scroll', () => {
+    searchbarTop.value = searchbar.value!.getBoundingClientRect().top
+  })
+})
+
 
 watch(() => state.searchStr, () => {
   if (state.searchStr.startsWith('\\')) { return }
@@ -142,7 +155,7 @@ watch(() => useStore().hoverEngine, (newValue, oldValue) => {
 
   if (state.searchStr != '') { return }
   if (newValue) {
-    state.placeholder = `输入「${newValue.command}」可快速选择「${newValue.title}」`
+    state.placeholder = `输入「${newValue.command}」可选择「${newValue.title}」`
   } else { state.placeholder = 'Search for Your Quasar' }
 })
 
