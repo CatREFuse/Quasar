@@ -8,4 +8,7 @@ export default defineConfig({
   build: {
     outDir: "home",
   },
+  server: {
+    host: "0.0.0.0",
+  },
 });
