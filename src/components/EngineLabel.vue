@@ -1,6 +1,6 @@
 <template>
   <div
-    class="relative inline-flex items-center gap-2 py-0 px-4 bg-white rounded-2xl h-11 md:h-12 transition-all select-none hover:drop-shadow-2xl hover:transition-all hover:cursor-pointer group"
+    class="relative inline-flex items-center gap-2 py-0 px-4 bg-white rounded-2xl h-11 md:h-12 md:transition-all select-none md:hover:drop-shadow-2xl md:hover:transition-all hover:cursor-pointer group"
     @click="selectEngine"
     :style="{
       'background-color': props.chosen ? 'var(--accent-color)' : 'white'
