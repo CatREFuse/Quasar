@@ -1,9 +1,12 @@
 <template>
-  <div class="flex flex-col gap-4 md:gap-6" @keydown.tab.prevent="switchEngine($event)">
+  <div
+    class="flex flex-col gap-4 md:gap-6 min-w-[256px]"
+    @keydown.tab.prevent="switchEngine($event)"
+  >
     <img src="../assets/quasar_logo.svg" class="w-40 md:w-60 select-none" />
     <SearchBar
-      :iconName="useStore().engine?.iconName"
-      :url-pattern="useStore().engine?.urlPattern"
+      :iconName="useStore().engine!.iconName"
+      :url-pattern="useStore().engine!.urlPattern"
     />
     <EngineList></EngineList>
     <div

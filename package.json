@@ -4,7 +4,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy": "source deploy.sh"
   },
   "dependencies": {
     "@vueuse/core": "^7.5.3",

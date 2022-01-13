@@ -6,7 +6,6 @@
 
 import useStore from '../store/index'
 import { onBeforeMount, ref } from 'vue';
-import { useRoute } from 'vue-router';
 
 const props = defineProps<{
   query?: string,
@@ -24,8 +23,6 @@ onBeforeMount(() => {
     return
   }
 })
-
-
 
 </script>
 

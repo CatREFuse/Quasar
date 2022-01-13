@@ -16,7 +16,7 @@
         :class="{
           white: props.chosen,
         }"
-        :src="`https://gitee.com/CatREFuse/img-base/raw/master/icons/${props.iconName}`"
+        :src="`https://gitee.com/CatREFuse/img-base/raw/master/icons/${props.engine.iconName}`"
       />
     </div>
 
@@ -25,7 +25,7 @@
       :style="{
         color: props.chosen ? 'white' : 'var(--text-main)'
       }"
-    >{{ props.title }}</p>
+    >{{ props.engine.title }}</p>
   </div>
 </template>
 
@@ -40,14 +40,12 @@ const props = withDefaults(defineProps<{
   iconName?: string,
   title?: string,
   chosen?: boolean,
-  index: number,
   engine: Engine,
 }>(), {
   iconName: 'baidu.svg',
   title: '百度',
   chosen: false,
 })
-
 
 
 function showTool() {
@@ -57,7 +55,7 @@ function showTool() {
 
 function dismissTool() {
 
-  useStore().hoverEngine = undefined
+  useStore().hoverEngine = null
 }
 
 defineEmits(['chose'])
@@ -71,6 +69,8 @@ onMounted(() => {
 
 function selectEngine() {
   useStore().selectEngine(props.engine)
+
+
 }
 
 </script>

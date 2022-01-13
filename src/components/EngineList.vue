@@ -3,11 +3,7 @@
     <EngineLabel
       v-for="(engine, index) in useStore().engines"
       :key="index"
-      :title="engine.title"
-      :icon-name="engine.iconName"
-      :index="index"
-      @chose="choseLabel($event, index)"
-      :chosen="useStore().engine?.title == engine.title"
+      :chosen="useStore().engine!.id == engine.id"
       :engine="engine"
     ></EngineLabel>
   </div>
@@ -16,12 +12,7 @@
 <script setup lang="ts">
 import EngineLabel from "./EngineLabel.vue";
 import useStore from "../store/index";
-
-function choseLabel(engineTitle: string, index: number) {
-  useStore().selectEngineByIndex(index)
-}
-
-defineEmits(["engine-change"]);
+import { Engine } from "../model/Engine";
 
 </script>
 

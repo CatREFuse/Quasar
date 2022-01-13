@@ -1,1 +1,0 @@
-csvtojson ./public/engine_db.csv > ./public/engines.json
