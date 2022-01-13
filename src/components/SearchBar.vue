@@ -1,7 +1,7 @@
 <template>
   <div class="w-full">
     <div
-      class="flex flex-row items-center h-14 w-full gap-2 py-0 pl-4 pr-2 rounded-[1rem] bg-white text-sm md:text-base align-middle"
+      class="inline-flex flex-row items-center h-14 w-full gap-2 py-0 pl-4 pr-2 rounded-[1rem] bg-white text-sm md:text-base align-middle sticky top-2 md:static"
     >
       <img
         :src="`https://gitee.com/CatREFuse/img-base/raw/master/icons/${iconName}`"
@@ -9,7 +9,7 @@
       />
       <input
         type="text"
-        class="w-full h-14 font-bold placeholder:text-gray-300 placeholder:font-bold outline-none"
+        class="h-14 font-bold w-full placeholder:text-gray-300 placeholder:font-bold outline-none"
         :placeholder="state.placeholder"
         @keydown.enter="doSearch($event)"
         v-model="state.searchStr"
@@ -20,7 +20,7 @@
         @compositionend="endComposing"
       />
       <p
-        class="text-xs font-medium"
+        class="text-xs font-medium text-right whitespace-nowrap"
         :style="{
           color: state.tip == '点击以搜索' ? 'var(--text-mian)' : 'var(--text-disabled)'
         }"
