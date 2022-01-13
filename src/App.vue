@@ -31,10 +31,7 @@ onMounted(() => {
       setThemeClassWithSystem();
     })
 
-  const body = document.querySelector('body')
-  body!.addEventListener('touchend', (event) => {
-    event.preventDefault();
-  })
+
 })
 
 const state = reactive({
