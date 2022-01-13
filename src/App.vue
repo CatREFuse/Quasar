@@ -32,7 +32,7 @@ onMounted(() => {
     })
 
   const body = document.querySelector('body')
-  body!.addEventListener('teouched', (event) => {
+  body!.addEventListener('touchend', (event) => {
     event.preventDefault();
   })
 })
