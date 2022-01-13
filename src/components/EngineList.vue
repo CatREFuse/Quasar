@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-row items-start p-0 gap-4 flex-wrap w-full user-select-none">
+  <div class="flex flex-row items-start p-0 gap-3 md:gap-4 flex-wrap w-full user-select-none">
     <EngineLabel
       v-for="(engine, index) in useStore().engines"
       :key="index"

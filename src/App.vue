@@ -93,7 +93,7 @@ function trigDebugMode() {
 <template>
   <div class="grid grid-cols-12 gap-2 text-gray-800">
     <div
-      class="cursor-container"
+      class="cursor-container invisible md:visible"
       :style="{
         transform: `translate(${state.visualCursor.x - 25}px,${state.visualCursor.y - 25}px)`
       }"
@@ -105,7 +105,7 @@ function trigDebugMode() {
         }"
       ></div>
     </div>
-    <router-view></router-view>
+    <router-view class="mb-8"></router-view>
 
     <img
       class="fixed z-[-1000] -right-1 -bottom-1 pointer-events-none"
@@ -127,36 +127,6 @@ function trigDebugMode() {
         <p>deviceClass: {{ useStore().deviceClass }}</p>
         <p>systemTheme: {{ useStore().systemTheme }}</p>
       </div>
-    </div>
-
-    <div
-      class="fixed bottom-6 right-[28px] text-right z-[100] select-text text-[14px] mt-4 font-medium opacity-30"
-      v-if="!useStore().debug"
-      v-text-hover
-    >
-      <p class="my-2">
-        © 2020 - 2021 🍓
-        <a
-          href="http:///bad-strawberry.com"
-          v-dot-hover
-          target="_blank"
-          class="decoration-none hover:underline"
-        >Bad Strawberry</a>. All rights reserved.
-      </p>
-      <p>
-        <a
-          href="https://www.craft.do/s/Gi8HESIcZQsSIY"
-          target="_blank"
-          v-dot-hover
-          class="decoration-none hover:underline"
-        >用户协议</a> ·
-        <a
-          href="https://beian.miit.gov.cn/#/Integrated/index"
-          target="_blank"
-          v-dot-hover
-          class="decoration-none hover:underline"
-        >浙 ICP 备 2020033146 号 - 2</a>
-      </p>
     </div>
   </div>
 </template>

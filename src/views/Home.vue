@@ -1,5 +1,7 @@
 <template>
-  <div class="col-start-2 col-end-7 min-w-[500px] mt-16">
+  <div
+    class="col-start-2 col-end-12 md:col-start-2 md:col-end-7 md:min-w-[512px] md:max-w-[720px] mt-16"
+  >
     <Search class="w-full"></Search>
   </div>
 </template>

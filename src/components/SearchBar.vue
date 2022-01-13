@@ -1,7 +1,7 @@
 <template>
   <div class="w-full">
     <div
-      class="flex flex-row items-center h-14 w-full gap-2 py-0 pl-4 pr-2 rounded-[16px] bg-white"
+      class="flex flex-row items-center h-14 w-full gap-2 py-0 pl-4 pr-2 rounded-[1rem] bg-white text-sm md:text-base align-middle"
     >
       <img
         :src="`https://gitee.com/CatREFuse/img-base/raw/master/icons/${iconName}`"
@@ -9,7 +9,7 @@
       />
       <input
         type="text"
-        class="w-full h-15 font-bold placeholder:text-gray-300 placeholder:font-bold outline-none"
+        class="w-full h-14 font-bold placeholder:text-gray-300 placeholder:font-bold outline-none"
         :placeholder="state.placeholder"
         @keydown.enter="doSearch($event)"
         v-model="state.searchStr"
@@ -27,7 +27,7 @@
       >{{ state.tip }}</p>
       <img
         src="../assets/icons/icon_right.svg"
-        class="select-none hover:cursor-pointer"
+        class="select-none hover:cursor-pointer w-8 h-8"
         v-dot-hover
         @click="doSearch()"
         :style="{
