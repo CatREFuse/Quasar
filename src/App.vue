@@ -30,6 +30,11 @@ onMounted(() => {
     .addEventListener('change', () => {
       setThemeClassWithSystem();
     })
+
+  const body = document.querySelector('body')
+  body!.addEventListener('teouched', (event) => {
+    event.preventDefault();
+  })
 })
 
 const state = reactive({
