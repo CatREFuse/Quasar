@@ -12,6 +12,9 @@ npm run dev
 
 # 构建命令，构建目标文件夹为 ./home，产物直接通过 Github Pages 进行部署
 npm run build
+
+# 部署命令，构建之后将源码和产物推送到仓库
+npm run deploy 'commit 说明'
 ```
 
 # Brand Logo 图床
