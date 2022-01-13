@@ -10,7 +10,7 @@
     @mouseleave="dismissTool"
     ref="label"
   >
-    <div class="w-4 h-4 overflow-hidden">
+    <div class="w-4 h-4 md:w-6 md:h-6 overflow-hidden">
       <img
         :class="{
           white: props.chosen,
