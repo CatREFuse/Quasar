@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import { Engine } from "../model/Engine";
 import axios from "axios";
-import { Device, Theme } from "../model/Setting";
+import { Device, Theme, CursorEffect } from "../model/Setting";
 
 export default defineStore({
   id: "app",
@@ -17,6 +17,9 @@ export default defineStore({
       deviceClass: Device.desktop,
       systemTheme: Theme.light,
       hoverEngine: null as Engine | null,
+      cursorEffect:
+        (window.localStorage.getItem("cursorEffect") as CursorEffect) ||
+        CursorEffect.take,
     };
   },
 
@@ -86,5 +89,10 @@ export default defineStore({
       }
     },
     // #endregion
+
+    changeCursorEffect(effect: CursorEffect): void {
+      this.cursorEffect = effect;
+      window.localStorage.setItem("cursorEffect", effect);
+    },
   },
 });

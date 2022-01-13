@@ -1,14 +1,16 @@
 <script setup lang="ts">
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
-import { onMounted, reactive, watch } from 'vue'
+import { onMounted, reactive, watch, watchEffect, ref } from 'vue'
 import useStore from './store/index'
 import { getEngineList } from './query/query'
-import { Device, Theme } from './model/Setting';
+import { Device, Theme, CursorEffect } from './model/Setting';
 
+
+// #region 主题监听
 function setDeviceClass() {
   // 根据 window.innerWidth 设置 DeviceClass
-  useStore().deviceClass = window.innerWidth >= 700 ? Device.desktop : Device.phone
+  useStore().deviceClass = window.innerWidth >= 736 ? Device.desktop : Device.phone
 }
 
 function setThemeClassWithSystem() {
@@ -30,10 +32,11 @@ onMounted(() => {
     .addEventListener('change', () => {
       setThemeClassWithSystem();
     })
-
-
 })
 
+// #endregion
+
+// #region 鼠标特效
 const state = reactive({
   cursor: {
     x: 0, y: 0
@@ -57,9 +60,8 @@ watch(() => state.visualCursor, (newValue, oldValue) => {
 
   const distance = Math.sqrt(delta.x * delta.x + delta.y * delta.y)
 
-  cursorUI.grow = Math.min(Math.max(distance / 20, 1), 2)
+  cursorUI.grow = Math.min(Math.max(distance / 5, 1), 2)
   cursorUI.degree = Math.atan2(delta.y, delta.x) * 180 / Math.PI
-
 
 })
 
@@ -81,23 +83,57 @@ onMounted(() => {
 
   setInterval(() => {
     state.visualCursor = { x: state.cursor.x, y: state.cursor.y }
-  }, 50)
+  }, 10)
 })
 
+// #endregion
 
 
 function trigDebugMode() {
   useStore().debug = !useStore().debug;
 }
 
+watchEffect(() => {
+  // 动态加载外部 js 文件，实现隐藏 cursor
+  if (useStore().cursorEffect == CursorEffect.take) {
+    var stylesheet = document.createElement("link");
+    stylesheet.href = "./css/no-cusor.css";
+    stylesheet.rel = "stylesheet";
+    stylesheet.type = "text/css";
+    stylesheet.id = 'no-cursor-link'
+    document.getElementsByTagName("head")[0].appendChild(stylesheet);
+  } else {
+    if (document.getElementById("no-cursor-link"))
+      document.getElementsByTagName("head")[0].removeChild(document.getElementById("no-cursor-link")!)
+  }
+})
+
+// #region 路由动效相关
+import router from "./router"
+
+let transition = ref('slide-left')
+
+router.beforeEach((to, from) => {
+  if (from.meta.depth != undefined) {
+    transition.value = (to.meta.depth as number) < (from.meta.depth as number) ?
+      "slide-left" : "slide-right";
+  } else {
+    transition.value = 'fade'
+  }
+})
+// #endregion
+
+
 </script>
 
 <template>
-  <div class="grid grid-cols-12 gap-2 text-gray-800">
+  <div class="grid grid-cols-12 gap-2 text-gray-800 select-none">
     <div
       class="cursor-container invisible md:visible"
+      v-if="useStore().cursorEffect != CursorEffect.none"
       :style="{
-        transform: `translate(${state.visualCursor.x - 25}px,${state.visualCursor.y - 25}px)`
+        transform: `translate(${state.visualCursor.x - 25}px,${state.visualCursor.y - 25}px)`,
+        transition: `all ${useStore().cursorEffect == CursorEffect.follow ? '0.15s' : '0.05s'} cubic-bezier(0.1, 0.28, 0.45, 0.75)`
       }"
     >
       <div
@@ -107,7 +143,15 @@ function trigDebugMode() {
         }"
       ></div>
     </div>
-    <router-view class="mb-8"></router-view>
+    <div
+      class="col-start-2 col-end-12 md:col-start-2 md:col-end-7 md:min-w-[512px] md:max-w-[720px] mt-12 md:mt-16 relative"
+    >
+      <router-view v-slot="{ Component, route }">
+        <transition :name="transition">
+          <component :is="Component" />
+        </transition>
+      </router-view>
+    </div>
 
     <img
       name="background-img"
@@ -118,7 +162,7 @@ function trigDebugMode() {
       }"
     />
 
-    <div class="fixed bottom-4 right-4 width-[200px] font-['Fira_Code']">
+    <div id="debugger" class="fixed bottom-4 right-4 width-[200px] font-['Fira_Code']" v-text-hover>
       <div
         class="fixed top-1 right-1 w-12 h-12 hover:cursor-pointer"
         v-dot-hover
@@ -132,10 +176,42 @@ function trigDebugMode() {
       </div>
     </div>
   </div>
+  <div
+    name="footer"
+    class="invisible md:visible md:fixed md:bottom-6 md:right-[28px] md:text-right md:z-[100] select-text text-sm mt-4 font-medium opacity-30"
+    v-if="!useStore().debug"
+    v-text-hover
+  >
+    <p class="my-2">
+      © 2020 - 2021 🍓
+      <a
+        href="http:///bad-strawberry.com"
+        v-dot-hover
+        target="_blank"
+        class="decoration-none hover:underline"
+      >Bad Strawberry</a>.
+      <span>All rights reserved.</span>
+    </p>
+    <p>
+      <a
+        href="https://www.craft.do/s/Gi8HESIcZQsSIY"
+        target="_blank"
+        v-dot-hover
+        class="decoration-none hover:underline"
+      >用户协议</a> ·
+      <a
+        href="https://beian.miit.gov.cn/#/Integrated/index"
+        target="_blank"
+        v-dot-hover
+        class="decoration-none hover:underline"
+      >浙 ICP 备 2020033146 号 - 2</a>
+    </p>
+  </div>
 </template>
 
 <style lang="scss">
 @import "./css/transition.scss";
+@import "https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css";
 
 .cursor-container {
   position: fixed;
@@ -144,7 +220,7 @@ function trigDebugMode() {
   width: 50px;
   height: 50px;
 
-  transition: all 0.1s cubic-bezier(0.1, 0.28, 0.45, 0.75);
+  // transition: all 0.05s cubic-bezier(0.1, 0.28, 0.45, 0.75);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -163,7 +239,7 @@ function trigDebugMode() {
 
   z-index: 9999;
   pointer-events: none;
-  transition: width 0.1s cubic-bezier(0.1, 0.28, 0.45, 0.75),
+  transition: width 0.04s cubic-bezier(0.1, 0.28, 0.45, 0.75),
     height 0.1s cubic-bezier(0.1, 0.28, 0.45, 0.75),
     background-color 0.1s cubic-bezier(0.1, 0.28, 0.45, 0.75),
     margin 0.1s cubic-bezier(0.1, 0.28, 0.45, 0.75);
