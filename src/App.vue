@@ -5,6 +5,7 @@ import { onMounted, reactive, watch, watchEffect, ref } from 'vue'
 import useStore from './store/index'
 import { getEngineList } from './query/query'
 import { Device, Theme, CursorEffect } from './model/Setting';
+import Debugger from './components/Debugger.vue';
 
 
 // #region 主题监听
@@ -171,21 +172,8 @@ router.beforeEach((to, from) => {
         transform: `none` || `translate(${-state.cursor.x / 80}px, ${-state.cursor.y / 80}px`,
       }"
     />
-
-    <div id="debugger" class="fixed bottom-4 right-4 width-[200px] font-['Fira_Code']" v-text-hover>
-      <div
-        class="fixed top-1 right-1 w-12 h-12 hover:cursor-pointer"
-        v-dot-hover
-        @click="trigDebugMode"
-      ></div>
-      <div v-if="useStore().debug">
-        <h3 class="mb-1">debugger</h3>
-        <p>cursor: {{ state.cursor.x }}, {{ state.cursor.y }}</p>
-        <p>deviceClass: {{ useStore().deviceClass }}</p>
-        <p>systemTheme: {{ useStore().systemTheme }}</p>
-      </div>
-    </div>
   </div>
+  <Debugger>cursor: {{ state.cursor.x }}, {{ state.cursor.y }}</Debugger>
   <div
     name="footer"
     class="invisible md:visible md:fixed md:bottom-6 md:right-[28px] md:text-right md:z-[100] select-text text-sm mt-4 font-medium opacity-30"

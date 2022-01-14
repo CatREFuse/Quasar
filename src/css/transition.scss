@@ -19,13 +19,13 @@
 
 .slide-right-enter-from {
   opacity: 0;
-  transform: translateX(300px);
+  transform: translateX(120px);
   // position: absolute; top: 0; left:0;
 }
 
 .slide-right-leave-to {
   opacity: 0;
-  transform: translateX(-300px);
+  transform: translateX(-120px);
   // position: absolute; top: 0; left:0;
 }
 
@@ -38,13 +38,13 @@
 .slide-left-enter-from
  {
   opacity: 0;
-  transform: translateX(-300px);
+  transform: translateX(-120px);
   // position: absolute; top: 0; left:0;
 }
 
 .slide-left-leave-to {
   opacity: 0;
-  transform: translateX(300px);
+  transform: translateX(120px);
   // position: absolute; top: 0; left:0;
 }
 
