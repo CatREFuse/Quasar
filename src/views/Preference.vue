@@ -12,16 +12,16 @@
       <h1 class="w-full align-center text-center font-bold">偏好设置</h1>
     </div>
     <div id="自定义搜索引擎" class="w-full flex flex-row items-center">
-      <h4 class="w-full text-gray-600 md:text-base text-sm">
-        自定义搜索引擎
-        <span class="ml-1 text-xs text-gray-400 italic">即将支持</span>
-      </h4>
+      <div class="flex flex-col gap-0 w-full">
+        <h4 class="w-full text-gray-600 md:text-base text-sm">自定义搜索引擎</h4>
+        <span class="text-xs text-gray-400">即将支持</span>
+      </div>
       <i class="bx bx-right-arrow-alt text-[2rem] opacity-30"></i>
     </div>
     <div id="分割线" class="h-[1px] bg-gray-200"></div>
     <div id="实验室 header" class="flex flex-row">
       <i class="bx bxs-flask text-[1.5rem]"></i>
-      <h1 class="font-bold text-lg ml-1">Quasar Lab 实验中的功能</h1>
+      <h1 class="font-bold text-lg ml-1">Quasar Lab 实验功能</h1>
     </div>
     <div id="鼠标设置" class="flex flex-row items-center" v-if="useStore().deviceClass == 'desktop'">
       <div class="w-full flex flex-col gap-0">
@@ -53,7 +53,7 @@
     <div id="命令模式" class="w-full flex flex-row items-center">
       <div class="flex flex-col gap-0 w-full">
         <h4 class="w-full text-gray-600 md:text-base text-sm">命令模式</h4>
-        <span class="text-xs text-gray-400 ">即将支持</span>
+        <span class="text-xs text-gray-400">即将支持</span>
       </div>
 
       <MultiToggle
