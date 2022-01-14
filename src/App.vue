@@ -80,7 +80,7 @@ onMounted(() => {
 
   document.onmousedown = () => { useStore().mousedown = true }
   document.onmouseup = () => { useStore().mousedown = false }
-  
+
   setInterval(() => {
     state.visualCursor = { x: state.cursor.x, y: state.cursor.y }
   }, 10)
@@ -98,6 +98,11 @@ function trigDebugMode() {
 
 watchEffect(() => {
   // 动态加载外部 js 文件，实现隐藏 cursor
+  if (useStore().deviceClass == Device.phone) {
+    if (document.getElementById("no-cursor-link"))
+      document.getElementsByTagName("head")[0].removeChild(document.getElementById("no-cursor-link")!)
+  }
+
   if (useStore().cursorEffect == CursorEffect.take) {
     var stylesheet = document.createElement("link");
     stylesheet.href = "./css/no-cusor.css";
@@ -136,7 +141,7 @@ router.beforeEach((to, from) => {
       v-if="useStore().cursorEffect != CursorEffect.none"
       :style="{
         transform: `translate(${state.visualCursor.x - 25}px,${state.visualCursor.y - 25}px)`,
-        transition: `all ${useStore().cursorEffect == CursorEffect.follow ? '0.15s' : '0.05s'} cubic-bezier(0.1, 0.28, 0.45, 0.75)`
+        transition: `all ${useStore().cursorEffect == CursorEffect.follow ? '0.1s' : '0.05s'} cubic-bezier(0.1, 0.28, 0.45, 0.75)`
       }"
     >
       <div
@@ -147,12 +152,14 @@ router.beforeEach((to, from) => {
       ></div>
     </div>
     <div
-      class="col-start-2 col-end-12 md:col-start-2 md:col-end-7 md:min-w-[512px] md:max-w-[720px] mt-12 md:mt-16 relative"
+      class="col-start-2 col-end-12 md:col-start-2 md:col-end-9 md:min-w-[512px] md:max-w-[764px] mt-12 md:mt-16 relative"
     >
       <router-view v-slot="{ Component, route }">
-        <transition :name="transition">
-          <component :is="Component" />
-        </transition>
+        <keep-alive>
+          <transition :name="transition">
+            <component :is="Component" />
+          </transition>
+        </keep-alive>
       </router-view>
     </div>
 

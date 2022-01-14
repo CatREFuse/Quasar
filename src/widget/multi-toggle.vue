@@ -3,7 +3,7 @@
     <div
       v-for="(item, index) in items"
       :key="index"
-      class="px-2 py-1 flex justify-center items-center rounded-lg text-sm select-none transition-all md:text-base"
+      class="px-2 py-1 flex justify-center items-center rounded-lg text-sm select-none transition-all md:text-sm"
       :class="{
         'bg-blue-500 font-medium text-white': chosenKey == index,
         'text-gray-400': chosenKey != index
@@ -36,7 +36,7 @@ function choseKey(index: number) {
 
 const emit = defineEmits(['choose'])
 
-                                                                                                                                                                                                                                                                                                                                   </script>
+</script>
 
 <style lang='scss'>
 </style>

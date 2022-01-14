@@ -26,7 +26,7 @@
     <div id="鼠标设置" class="flex flex-row items-center" v-if="useStore().deviceClass == 'desktop'">
       <div class="w-full flex flex-col gap-0">
         <h4 class="text-gray-600 md:text-base text-sm">鼠标特效设置</h4>
-        <span class="mt-0 text-xs text-gray-400 text-ellipsis w-full">推荐最新 Chrome/Safari 浏览器</span>
+        <span class="mt-0 text-xs text-gray-400 text-ellipsis w-full">兼容最新 Chrome/Safari 浏览器</span>
       </div>
 
       <MultiToggle
