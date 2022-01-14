@@ -1,7 +1,7 @@
 <template>
   <div
     id="debugger"
-    class="fixed bottom-4 right-4 w-[200px] font-['Fira_Code', 'Courier']"
+    class="fixed bottom-4 right-4 w-[300px] font-['Fira_Code', 'Courier New']"
     v-text-hover
   >
     <div
@@ -9,13 +9,17 @@
       v-dot-hover
       @click="useStore().debug = useStore().debug ? false : true"
     ></div>
-    <div v-if="useStore().debug">
+    <div v-if="useStore().debug" class="flex flex-col gap-1">
       <h3 class="mb-1">debugger</h3>
       <slot></slot>
       <p>deviceClass: {{ useStore().deviceClass }}</p>
       <p>systemTheme: {{ useStore().systemTheme }}</p>
-      <p>userAgent: {{ userAgent.str }}</p>
-      <p>browser: {{ userAgent.browser }}</p>
+      <p>isFirefox: {{ useStore().userAgent.isFirefox }}</p>
+      <p>isWindows: {{ useStore().userAgent.isWindows }}</p>
+      <p>isChrome: {{ useStore().userAgent.isChrome }}</p>
+      <p>isSafari: {{ useStore().userAgent.isSafari }}</p>
+      <p>isWebKit: {{ useStore().userAgent.isWebKit }}</p>
+      <p>userAgent: {{ useStore().userAgent.str }}</p>
     </div>
   </div>
 </template>
@@ -23,12 +27,6 @@
 <script setup lang='ts'>
 import useStore from '../store/index'
 import { reactive } from 'vue'
-let userAgent = reactive({
-  str: '',
-  browser: '',
-})
-
-userAgent.str = window.navigator.userAgent
 
 </script>
 

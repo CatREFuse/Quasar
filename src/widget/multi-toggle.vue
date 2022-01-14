@@ -1,12 +1,16 @@
 <template>
-  <div class="inline-flex flex-row gap-[6px] p-[6px] bg-gray-100 rounded-xl">
+  <div
+    class="inline-flex flex-row gap-[6px] p-[6px] bg-gray-100 rounded-xl"
+    :class="props.disabled ? 'opacity-40' : ''"
+  >
     <div
       v-for="(item, index) in items"
       :key="index"
-      class="px-2 py-1 flex justify-center items-center rounded-lg text-sm select-none transition-all md:text-sm"
+      class="px-2 py-1 flex justify-center items-center rounded-lg text-sm select-none transition-all md:text-sm hover:cursor-pointer"
       :class="{
         'bg-blue-500 font-medium text-white': chosenKey == index,
-        'text-gray-400': chosenKey != index
+        'text-gray-400': chosenKey != index,
+        'pointer-events-none': props.disabled
       }"
       @click="choseKey(index)"
     >
@@ -21,10 +25,12 @@ import { ref } from 'vue'
 
 const props = withDefaults(defineProps<{
   items?: string[],
-  defaultKey: number
+  defaultKey: number,
+  disabled: boolean,
 }>(), {
   items: () => ['跟随', '替代', '无特效'],
-  defaultKey: 0
+  defaultKey: 0,
+  disabled: false,
 })
 
 const chosenKey = ref(props.defaultKey)

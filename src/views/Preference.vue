@@ -26,7 +26,11 @@
     <div id="鼠标设置" class="flex flex-row items-center" v-if="useStore().deviceClass == 'desktop'">
       <div class="w-full flex flex-col gap-0">
         <h4 class="text-gray-600 md:text-base text-sm">鼠标特效设置</h4>
-        <span class="mt-0 text-xs text-gray-400 text-ellipsis w-full">兼容最新 Chrome/Safari 浏览器</span>
+        <span class="mt-0 text-xs text-gray-400 text-ellipsis w-full">
+          {{
+            useStore().userAgent.isWebKit ? '性能要求较高' : '仅支持 Chrome 内核和 Safari 浏览器'
+          }}
+        </span>
       </div>
 
       <MultiToggle
@@ -34,6 +38,7 @@
         @choose="localCangeCursorEffect($event)"
         :items="cursorSettingGroup"
         :defaultKey="cursorSettingGroup.indexOf(useStore().cursorEffect)!"
+        :disabled="!useStore().userAgent.isWebKit"
       ></MultiToggle>
     </div>
     <div id="主题设置" class="w-full flex flex-row items-center">
@@ -47,7 +52,7 @@
         @choose="localCangeCursorEffect($event)"
         :items="['亮色', '暗色']"
         :defaultKey="0"
-        class="opacity-50 pointer-events-none"
+        disabled
       ></MultiToggle>
     </div>
     <div id="命令模式" class="w-full flex flex-row items-center">
@@ -61,7 +66,7 @@
         @choose="localCangeCursorEffect($event)"
         :items="['开', '关']"
         :defaultKey="1"
-        class="opacity-50 pointer-events-none"
+        disabled
       ></MultiToggle>
     </div>
   </div>

@@ -67,7 +67,6 @@ watch(() => state.visualCursor, (newValue, oldValue) => {
 })
 
 
-
 onMounted(() => {
 
   getEngineList()
@@ -86,16 +85,21 @@ onMounted(() => {
     state.visualCursor = { x: state.cursor.x, y: state.cursor.y }
   }, 10)
 
+  // 兼容性检查
+  useStore().userAgent.str = window.navigator.userAgent
+  const userAgent = window.navigator.userAgent
+  useStore().userAgent.isFirefox = userAgent.includes('Firefox')
+  useStore().userAgent.isWindows = userAgent.toLowerCase().includes('Windows'.toLowerCase())
+  useStore().userAgent.isChrome = userAgent.includes('Chrome')
+  useStore().userAgent.isSafari = userAgent.includes('Safari') && !useStore().userAgent.str.includes('Chrome')
+  useStore().userAgent.isWebKit = userAgent.toLowerCase().includes('WebKit'.toLowerCase())
+  if (!useStore().userAgent.isWebKit) { useStore().cursorEffect = CursorEffect.none }
 
 })
 
 
 // #endregion
 
-
-function trigDebugMode() {
-  useStore().debug = !useStore().debug;
-}
 
 watchEffect(() => {
   // 动态加载外部 js 文件，实现隐藏 cursor
@@ -106,7 +110,7 @@ watchEffect(() => {
 
   if (useStore().cursorEffect == CursorEffect.take) {
     var stylesheet = document.createElement("link");
-    stylesheet.href = "./css/no-cusor.css";
+    stylesheet.href = useStore().userAgent.isSafari ? "./css/no-cusor-safari.css" : "./css/no-cusor.css";
     stylesheet.rel = "stylesheet";
     stylesheet.type = "text/css";
     stylesheet.id = 'no-cursor-link'

@@ -20,6 +20,14 @@ export default defineStore({
       cursorEffect:
         (window.localStorage.getItem("cursorEffect") as CursorEffect) ||
         CursorEffect.none,
+      userAgent: {
+        str: "",
+        isFirefox: false,
+        isWindows: false,
+        isChrome: false,
+        isSafari: false,
+        isWebKit: false,
+      },
     };
   },
 
