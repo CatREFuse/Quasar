@@ -19,7 +19,7 @@ export default defineStore({
       hoverEngine: null as Engine | null,
       cursorEffect:
         (window.localStorage.getItem("cursorEffect") as CursorEffect) ||
-        CursorEffect.take,
+        CursorEffect.none,
     };
   },
 

@@ -2,7 +2,7 @@
   <div
     class="w-full bg-white rounded-[1.5rem] shadow-2xl flex flex-col md:gap-6 md:p-8 gap-4 px-4 py-6"
   >
-    <div class="flex flex-row items-center z-10 relative">
+    <div id="header" class="flex flex-row items-center z-10 relative">
       <i
         class="bx bx-left-arrow-alt w-8 h-8 hover:cursor-pointer absolute left-0 text-[2rem]"
         color="#333"
@@ -11,8 +11,24 @@
       ></i>
       <h1 class="w-full align-center text-center font-bold">偏好设置</h1>
     </div>
-    <div class="w-full flex flex-row items-center" v-if="useStore().deviceClass == 'desktop'">
-      <h4 class="w-full text-gray-600 md:text-base text-sm">鼠标特效设置</h4>
+    <div id="自定义搜索引擎" class="w-full flex flex-row items-center">
+      <h4 class="w-full text-gray-600 md:text-base text-sm">
+        自定义搜索引擎
+        <span class="ml-1 text-xs text-gray-400 italic">即将支持</span>
+      </h4>
+      <i class="bx bx-right-arrow-alt text-[2rem] opacity-30"></i>
+    </div>
+    <div id="分割线" class="h-[1px] bg-gray-200"></div>
+    <div id="实验室 header" class="flex flex-row">
+      <i class="bx bxs-flask text-[1.5rem]"></i>
+      <h1 class="font-bold text-lg ml-1">Quasar Lab 实验中的功能</h1>
+    </div>
+    <div id="鼠标设置" class="flex flex-row items-center" v-if="useStore().deviceClass == 'desktop'">
+      <div class="w-full flex flex-col gap-0">
+        <h4 class="text-gray-600 md:text-base text-sm">鼠标特效设置</h4>
+        <span class="mt-0 text-xs text-gray-400 text-ellipsis w-full">推荐最新 Chrome/Safari 浏览器</span>
+      </div>
+
       <MultiToggle
         v-dot-hover
         @choose="localCangeCursorEffect($event)"
@@ -20,11 +36,12 @@
         :defaultKey="cursorSettingGroup.indexOf(useStore().cursorEffect)!"
       ></MultiToggle>
     </div>
-    <div class="w-full flex flex-row items-center">
-      <h4 class="w-full text-gray-600 md:text-base text-sm">
-        主题
-        <span class="ml-1 text-xs text-gray-400 italic">即将支持</span>
-      </h4>
+    <div id="主题设置" class="w-full flex flex-row items-center">
+      <div class="flex flex-col gap-0 w-full">
+        <h4 class="w-full gap-0 text-gray-600 md:text-base text-sm">主题</h4>
+        <span class="mt-0 text-xs text-gray-400 text-ellipsis w-full">即将支持</span>
+      </div>
+
       <MultiToggle
         v-dot-hover
         @choose="localCangeCursorEffect($event)"
@@ -33,11 +50,12 @@
         class="opacity-50 pointer-events-none"
       ></MultiToggle>
     </div>
-    <div class="w-full flex flex-row items-center">
-      <h4 class="w-full text-gray-600 md:text-base text-sm">
-        命令模式
-        <span class="ml-1 text-xs text-gray-400 italic">即将支持</span>
-      </h4>
+    <div id="命令模式" class="w-full flex flex-row items-center">
+      <div class="flex flex-col gap-0 w-full">
+        <h4 class="w-full text-gray-600 md:text-base text-sm">命令模式</h4>
+        <span class="text-xs text-gray-400 ">即将支持</span>
+      </div>
+
       <MultiToggle
         v-dot-hover
         @choose="localCangeCursorEffect($event)"
@@ -45,13 +63,6 @@
         :defaultKey="1"
         class="opacity-50 pointer-events-none"
       ></MultiToggle>
-    </div>
-    <div class="w-full flex flex-row items-center">
-      <h4 class="w-full text-gray-600 md:text-base text-sm">
-        自定义搜索引擎
-        <span class="ml-1 text-xs text-gray-400 italic">即将支持</span>
-      </h4>
-      <i class="bx bx-right-arrow-alt text-[2rem] opacity-30"></i>
     </div>
   </div>
 </template>
@@ -73,6 +84,7 @@ function localCangeCursorEffect(key: number): void {
 
 const themeSettingGroup = ref([Theme.light, Theme.dark])
 </script>
+
 
 <style lang='scss'>
 </style>
