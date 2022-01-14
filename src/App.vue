@@ -1,7 +1,7 @@
 <script setup lang="ts">
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
-import { onMounted, reactive, watch, watchEffect, ref } from 'vue'
+import { onMounted, reactive, watch, watchEffect, ref, onCreated } from 'vue'
 import useStore from './store/index'
 import { getEngineList } from './query/query'
 import { Device, Theme, CursorEffect } from './model/Setting';
@@ -81,10 +81,12 @@ onMounted(() => {
   document.onmousedown = () => { useStore().mousedown = true }
   document.onmouseup = () => { useStore().mousedown = false }
 
-  setInterval(() => {
-    state.visualCursor = { x: state.cursor.x, y: state.cursor.y }
-  }, 10)
+
 })
+
+setInterval(() => {
+  state.visualCursor = { x: state.cursor.x, y: state.cursor.y }
+}, 10)
 
 // #endregion
 
