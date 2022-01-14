@@ -107,6 +107,9 @@ watchEffect(() => {
     if (document.getElementById("no-cursor-link"))
       document.getElementsByTagName("head")[0].removeChild(document.getElementById("no-cursor-link")!)
   }
+})
+
+watchEffect(() => {
 
   if (useStore().cursorEffect == CursorEffect.take) {
     var stylesheet = document.createElement("link");
