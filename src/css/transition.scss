@@ -1,6 +1,6 @@
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 350ms cubic-bezier(.08,.58,.58,1);
+  transition: opacity 350ms ease-in
   // position: absolute; top: 0; left:0;
   
 }
@@ -13,8 +13,8 @@
 
 .slide-right-enter-active,
 .slide-right-leave-active {
-  transition: all 350ms cubic-bezier(.08,.58,.58,1);
-  position: absolute; top: 0; left:0;
+  transition: all 125ms cubic-bezier(.08,.58,.58,1);
+  // position: absolute; top: 0; left:0;
 }
 
 .slide-right-enter-from {
@@ -31,8 +31,8 @@
 
 .slide-left-enter-active,
 .slide-left-leave-active {
-  transition: all 350ms cubic-bezier(.08,.58,.58,1);
-  position: absolute; top: 0; left:0;
+  transition: all 125ms ease-out
+  // position: absolute; top: 0; left:0;
 }
 
 .slide-left-enter-from

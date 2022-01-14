@@ -156,7 +156,7 @@ router.beforeEach((to, from) => {
     >
       <router-view v-slot="{ Component, route }">
         <keep-alive>
-          <transition :name="transition">
+          <transition :name="transition" mode="out-in">
             <component :is="Component" />
           </transition>
         </keep-alive>
