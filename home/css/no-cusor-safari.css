@@ -1,0 +1,4 @@
+* {
+  cursor: url("cursor.ico"), none !important;
+  /* Safari 需要设置透明图标才能完全去掉原生的 Cursor，但是 Windows 不支持完全透明的 Cursor */
+}
