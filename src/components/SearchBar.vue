@@ -183,6 +183,5 @@ function dismissClickTip() {
 <style scoped>
 .white {
   filter: brightness(0%) invert(100%) !important;
-  opacity: 0.8;
 }
 </style>
