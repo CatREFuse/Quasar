@@ -75,7 +75,7 @@ router.beforeEach((to, from) => {
 
     <box-icon
       name="bxs-cog"
-      class="opacity-30 text-secondary hover:cursor-pointer fixed top-2 right-2"
+      class="opacity-30 text-secondary hover:cursor-pointer absolute top-2 right-2"
       v-dot-hover
       size="l"
       @click.native="router.push('/preference')"
