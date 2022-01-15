@@ -1,5 +1,4 @@
 import { defineStore } from "pinia";
-import { Engine } from "../model/Engine";
 import axios from "axios";
 import { Device, Theme, CursorEffect } from "../model/Setting";
 
