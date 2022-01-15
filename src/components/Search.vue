@@ -9,11 +9,14 @@
         class="w-40 md:w-60 select-none"
       />
       <div id="spacer" class="flex-1"></div>
-      <i
-        class="bx bxs-cog h-[1.75rem] w-[1.75rem] hover:cursor-pointer text-[1.75rem] opacity-30 text-secondary"
+
+      <box-icon
+        name="bxs-cog"
+        class="opacity-30 text-secondary hover:cursor-pointer"
         v-dot-hover
-        @click="router.push('/preference')"
-      ></i>
+        size="l"
+        @click.native="router.push('/preference')"
+      ></box-icon>
     </div>
     <SearchBar
       :iconName="useStore().engine!.iconName"
@@ -30,6 +33,7 @@ import EngineList from './EngineList.vue';
 import useStore from '../store/index'
 import router from '../router'
 import { Theme } from '../model/Setting'
+import boxIcon from '../widget/box-icon.vue';
 
 // 切换引擎
 function switchEngine(event?: KeyboardEvent) {

@@ -28,4 +28,8 @@
   .text-disabled {
     @apply text-zinc-400 dark:text-zinc-600;
   }
+
+  .card {
+    @apply bg-overlay rounded-3xl shadow-xl p-4;
+  }
 }

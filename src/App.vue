@@ -75,6 +75,10 @@ watchEffect(() => {
   }
 })
 
+// 防止 transition 造成的刷新闪屏
+setTimeout(() => {
+  document.body.classList.add('transition')
+}, 50)
 
 onMounted(() => {
 
@@ -188,8 +192,20 @@ router.beforeEach((to, from) => {
       }"
     />
   </div>
-  <Debugger>cursor: {{ state.cursor.x }}, {{ state.cursor.y }}</Debugger>
-  <Footer v-if="!useStore().debug" v-text-hover></Footer>
+  <transition-group name="slide-down">
+    <Debugger v-if="useStore().debug" @close="useStore().debug = false">
+      <p>cursor: {{ state.cursor.x }}, {{ state.cursor.y }}</p>
+      <p>deviceClass: {{ useStore().deviceClass }}</p>
+      <p>systemTheme: {{ useStore().systemTheme }}</p>
+      <p>isFirefox: {{ useStore().userAgent.isFirefox }}</p>
+      <p>isWindows: {{ useStore().userAgent.isWindows }}</p>
+      <p>isChrome: {{ useStore().userAgent.isChrome }}</p>
+      <p>isSafari: {{ useStore().userAgent.isSafari }}</p>
+      <p>isWebKit: {{ useStore().userAgent.isWebKit }}</p>
+      <p>userAgent: {{ useStore().userAgent.str }}</p>
+    </Debugger>
+    <Footer v-else="!useStore().debug" v-text-hover></Footer>
+  </transition-group>
 </template>
 
 <style lang="scss">

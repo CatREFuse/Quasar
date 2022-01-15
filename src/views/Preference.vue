@@ -17,7 +17,7 @@
         <h4 class="w-full text-main md:text-base text-sm">自定义搜索引擎</h4>
         <span class="text-xs text-secondary">即将支持</span>
       </div>
-      <i class="bx bx-right-arrow-alt text-[2rem] opacity-30"></i>
+      <box-icon name="bx-right-arrow-alt" class="text-[2rem] opacity-30 text-secondary" size="l"></box-icon>
     </div>
     <div id="分割线" class="h-[1px] bg-overlay-2"></div>
     <div id="实验室 header" class="flex flex-row text-main">

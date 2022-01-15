@@ -10,7 +10,7 @@ export enum Theme {
 }
 
 export enum CursorEffect {
-  follow = "跟随",
-  take = "替代默认鼠标",
+  follow = "圆点跟随",
+  take = "圆点",
   none = "无特效",
 }

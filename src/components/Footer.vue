@@ -1,6 +1,6 @@
 <template >
   <div
-    class="invisible md:visible md:fixed md:bottom-6 md:right-[28px] md:text-right md:z-[100] select-text text-sm mt-4 font-medium text-secondary"
+    class="invisible md:visible md:fixed md:bottom-6 md:right-[28px] md:text-right md:z-[100] select-text text-sm mt-4 font-medium text-tertiary"
   >
     <p class="my-2">
       © 2020 - 2021 🍓

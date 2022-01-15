@@ -8,7 +8,7 @@
   >
     <img
       :src="`https://gitee.com/CatREFuse/img-base/raw/master/icons/${iconName}`"
-      class="w-6 h-6 select-none"
+      class="w-6 h-6 select-none shrink-0"
       :class="{
         white: useStore().theme == Theme.dark
       }"
@@ -27,15 +27,12 @@
       autocorrect="off"
     />
     <p
-      class="text-xs font-medium text-right whitespace-nowrap"
-      :style="{
-        color: state.tip == '点击以搜索' ? 'var(--text-mian)' : 'var(--text-disabled)'
-      }"
+      class="text-sm font-medium text-right whitespace-nowrap text-secondary relative left-3"
     >{{ state.tip }}</p>
     <box-icon
       name="bx-right-arrow-alt"
       size="l"
-      class="select-none hover:cursor-pointer text-secondary"
+      class="select-none hover:cursor-pointer text-main shrink-0"
       v-dot-hover
       @click="doSearch()"
       :style="{
@@ -74,7 +71,7 @@ const props = defineProps({
 })
 
 const state = reactive({
-  tip: '',
+  tip: ' ',
   searchStr: '',
   placeholder: '',
   isComposing: false,
@@ -101,6 +98,12 @@ function endComposing() {
 
 // 搜索动作
 function doSearch(event?: KeyboardEvent) {
+  if (state.searchStr == '#debug') {
+    useStore().debug = true
+    state.searchStr = ''
+    return
+  }
+
   if (state.searchStr == '') { return }
 
   // 检查是否在中文输入法状态下按下的 enter
@@ -141,9 +144,9 @@ watch(() => state.searchStr, () => {
   if (state.searchStr.startsWith('\\')) { return }
   for (let item of useStore().engines!) {
     if (state.searchStr == item.command || state.searchStr == item.title) {
-      state.tip = `按下空格选择「${item.title}」 ${(item.loginRequire == 1) ? ' / 需要登录' : ''}`
+      state.tip = `按下空格选择「${item.title}」`
       break;
-    } else { state.tip = '' }
+    } else { state.tip = ' ' }
 
   }
   for (let item of useStore().engines!) {

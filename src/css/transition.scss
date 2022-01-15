@@ -50,15 +50,14 @@
 
 .slide-down-enter-active,
 .slide-down-leave-active {
-  transition: all 350ms cubic-bezier(.08,.58,.58,1);
-  // position: absolute; top: 0; left:0;
+  transition: all 250ms ease-in-out;
 }
 
 .slide-down-enter-from,
 .slide-down-leave-to {
   opacity: 0;
-  transform: translateY(600px);
-  // position: absolute; top: 0; left:0;
+  transform: translateY(300px);
+
 }
 
 .rview {

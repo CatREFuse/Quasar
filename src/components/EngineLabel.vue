@@ -5,7 +5,7 @@
     @mousedown="selectEngine"
     :class="{
       'bg-overlay': !props.chosen,
-      'bg-sky-500': props.chosen
+      'bg-blue-500': props.chosen
     }"
     v-dot-hover
     @mouseenter="showTool"

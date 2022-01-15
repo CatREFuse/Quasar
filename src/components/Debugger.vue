@@ -1,34 +1,38 @@
 <template>
   <div
-    id="debugger"
-    class="fixed bottom-4 right-4 w-[300px] font-['Fira_Code', 'Courier New']"
-    v-text-hover
+    class="fixed bottom-4 right-4 w-[300px] flex flex-col rounded-lg overflow-hidden bg-zinc-800 shadow-2xl"
   >
     <div
-      class="fixed top-1 right-1 w-12 h-12 hover:cursor-pointer"
-      v-dot-hover
-      @click="useStore().debug = useStore().debug ? false : true"
-    ></div>
-    <div v-if="useStore().debug" class="flex flex-col gap-1">
-      <h3 class="mb-1">debugger</h3>
-      <slot></slot>
-      <p>deviceClass: {{ useStore().deviceClass }}</p>
-      <p>systemTheme: {{ useStore().systemTheme }}</p>
-      <p>isFirefox: {{ useStore().userAgent.isFirefox }}</p>
-      <p>isWindows: {{ useStore().userAgent.isWindows }}</p>
-      <p>isChrome: {{ useStore().userAgent.isChrome }}</p>
-      <p>isSafari: {{ useStore().userAgent.isSafari }}</p>
-      <p>isWebKit: {{ useStore().userAgent.isWebKit }}</p>
-      <p>userAgent: {{ useStore().userAgent.str }}</p>
+      id="debugger-header"
+      class="w-full text-center flex flex-row items-center justify-center text-white h-8 text-sm"
+    >
+      <div class="select-none">debugger</div>
+      <div
+        id="dot-controller"
+        class="flex flex-row items-center gap-2 absolute left-0 p-3 hover:cursor-pointer"
+        @click="emit('close')"
+      >
+        <div class="rounded-full bg-red-500 h-3 w-3"></div>
+        <div class="rounded-full bg-yellow-500 h-3 w-3"></div>
+        <div class="rounded-full bg-gray-500 h-3 w-3"></div>
+      </div>
+    </div>
+    <div id="debugger-body" class="font-mono text-green-600 bg-overlayshadow-xl p-5" v-text-hover>
+      <div class="flex flex-col gap-1">
+        <slot></slot>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup lang='ts'>
 import useStore from '../store/index'
-import { reactive } from 'vue'
+import { reactive, } from 'vue'
 
+
+const emit = defineEmits(['close'])
 </script>
 
 <style lang='scss'>
 </style>
+
