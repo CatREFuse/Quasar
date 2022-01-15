@@ -9,6 +9,7 @@ import { useMouse } from './utils/dom-utils'
 import useThemeAndScreen from './hooks/useThemeAndScreen'
 import DotCursor from './widgets/dot-cursor.vue';
 import useBrowserCheck from './hooks/useBrowserCheck'
+import BoxIcon from './widgets/box-icon.vue';
 
 
 useThemeAndScreen()
@@ -71,6 +72,14 @@ router.beforeEach((to, from) => {
       :shape="useStore().hover ? 'hover' : useStore().caret ? 'caret' : 'dot'"
       v-show="useStore().cursorEffect != CursorEffect.none && useStore().deviceClass != Device.phone"
     ></dot-cursor>
+
+    <box-icon
+      name="bxs-cog"
+      class="opacity-30 text-secondary hover:cursor-pointer fixed top-2 right-2"
+      v-dot-hover
+      size="l"
+      @click.native="router.push('/preference')"
+    ></box-icon>
 
     <div
       id="grid-container"

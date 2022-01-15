@@ -13,14 +13,7 @@
         class="w-40 md:w-60 select-none"
       />
       <div id="spacer" class="flex-1"></div>
-      <box-icon
-        name="bxs-cog"
-        class="opacity-30 text-secondary hover:cursor-pointer"
-        :class="useStore().compactMode ? 'fixed top-2 right-2' : 'absolute right-2'"
-        v-dot-hover
-        size="l"
-        @click.native="router.push('/preference')"
-      ></box-icon>
+      
     </div>
     <SearchBar
       :iconName="useStore().engine!.iconName"
@@ -46,4 +39,4 @@ function switchEngine(event?: KeyboardEvent) {
 
 
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </script>
+</script>

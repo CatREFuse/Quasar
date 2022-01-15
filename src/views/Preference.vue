@@ -7,7 +7,7 @@
         full
         size="m"
         v-dot-hover
-        @click="router.go(-1)"
+        @click="router.push('/')"
         class="absolute hover:cursor-pointer left-0 text-main"
       ></box-icon>
       <h1 class="w-full align-center text-center font-bold text-main">偏好设置</h1>
