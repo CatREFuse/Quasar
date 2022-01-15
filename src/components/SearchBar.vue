@@ -15,7 +15,7 @@
     />
     <input
       type="text"
-      class="h-14 font-bold w-full placeholder:text-zinc-500 placeholder:font-bold outline-none bg-overlay text-main"
+      class="h-14 font-bold w-full placeholder:text-zinc-400 placeholder:font-bold outline-none bg-overlay text-main"
       :placeholder="state.placeholder"
       @keydown.enter="doSearch($event)"
       v-model="state.searchStr"
@@ -50,7 +50,7 @@
 import { reactive, computed, watchEffect, Ref, ref, watch, onMounted } from 'vue'
 import useStore from '../store/index'
 import axios from 'axios'
-import boxIcon from '../widget/box-icon.vue';
+import boxIcon from '../widgets/box-icon.vue';
 import { Theme } from '../model/Setting'
 
 function turnToCaret() { useStore().caret = true; }
@@ -100,7 +100,6 @@ function endComposing() {
 function doSearch(event?: KeyboardEvent) {
   if (state.searchStr == '#debug') {
     useStore().debug = true
-    state.searchStr = ''
     return
   }
 

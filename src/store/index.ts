@@ -10,11 +10,12 @@ export default defineStore({
       engine: null as Engine | null,
       engines: null as Engine[] | null,
       hover: false,
-      mousedown: false,
       caret: false,
       debug: false,
       deviceClass: Device.desktop,
       systemTheme: Theme.light,
+      compactMode:
+        window.localStorage.getItem("compactMode") == "true" ? true : false,
       userThemeSetting:
         (window.localStorage.getItem("userThemeSetting") as Theme) ||
         Theme.auto,
@@ -108,6 +109,10 @@ export default defineStore({
     changeThemeSetting(theme: Theme): void {
       this.userThemeSetting = theme;
       window.localStorage.setItem("userThemeSetting", theme);
+    },
+    changeCompactMode(target: boolean): void {
+      this.compactMode = target;
+      window.localStorage.setItem("compactMode", target ? "true" : "false");
     },
   },
   getters: {

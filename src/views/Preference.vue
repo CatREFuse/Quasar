@@ -12,42 +12,12 @@
       ></box-icon>
       <h1 class="w-full align-center text-center font-bold text-main">偏好设置</h1>
     </div>
-    <div id="自定义搜索引擎" class="w-full flex flex-row items-center">
-      <div class="flex flex-col gap-0 w-full">
-        <h4 class="w-full text-main md:text-base text-sm">自定义搜索引擎</h4>
-        <span class="text-xs text-secondary">即将支持</span>
-      </div>
+
+    <perference-item title="自定义搜索引擎" subtitle="即将支持">
       <box-icon name="bx-right-arrow-alt" class="text-[2rem] opacity-30 text-secondary" size="l"></box-icon>
-    </div>
-    <div id="分割线" class="h-[1px] bg-overlay-2"></div>
-    <div id="实验室 header" class="flex flex-row text-main">
-      <box-icon name="bxs-flask" size="m"></box-icon>
-      <h1 class="font-bold text-lg ml-1 text-main">Quasar Lab 实验功能</h1>
-    </div>
-    <div id="鼠标设置" class="flex flex-row items-center" v-if="useStore().deviceClass == 'desktop'">
-      <div class="w-full flex flex-col gap-0">
-        <h4 class="text-main md:text-base text-sm">鼠标特效设置</h4>
-        <span class="mt-0 text-xs text-secondary text-ellipsis w-full">
-          {{
-            useStore().userAgent.isWebKit ? '性能要求较高' : '仅支持 Chrome 内核和 Safari 浏览器'
-          }}
-        </span>
-      </div>
+    </perference-item>
 
-      <MultiToggle
-        v-dot-hover
-        @choose="localCangeCursorEffect($event)"
-        :items="cursorSettingGroup"
-        :defaultKey="cursorSettingGroup.indexOf(useStore().cursorEffect)!"
-        :disabled="!useStore().userAgent.isWebKit"
-      ></MultiToggle>
-    </div>
-    <div id="主题设置" class="w-full flex flex-row items-center">
-      <div class="flex flex-col gap-0 w-full">
-        <h4 class="w-full gap-0 text-main md:text-base text-sm">主题</h4>
-        <span class="mt-0 text-xs text-secondary text-ellipsis w-full">切换主题</span>
-      </div>
-
+    <perference-item title="切换外观" subtitle=" ">
       <MultiToggle
         v-dot-hover
         @choose="localChangeThemeSetting($event)"
@@ -55,13 +25,39 @@
         :defaultKey="themeSettingGroup.indexOf(useStore().userThemeSetting)"
         :disabled="false"
       ></MultiToggle>
-    </div>
-    <div id="命令模式" class="w-full flex flex-row items-center">
-      <div class="flex flex-col gap-0 w-full">
-        <h4 class="w-full text-main md:text-base text-sm">命令模式</h4>
-        <span class="text-xs text-secondary">即将支持</span>
-      </div>
+    </perference-item>
 
+    <div id="分割线" class="h-[1px] bg-overlay-2"></div>
+
+    <div id="实验室 header" class="flex flex-row text-main">
+      <box-icon name="bxs-flask" size="m"></box-icon>
+      <h1 class="font-bold text-lg ml-1 text-main">Quasar Lab 实验功能</h1>
+    </div>
+
+    <perference-item
+      title="鼠标特效设置"
+      :subtitle="useStore().userAgent.isWebKit ? '此功能对性能要求较高' : '仅支持 Chrome 内核和 Safari 浏览器'"
+      v-if="useStore().deviceClass != Device.phone"
+    >
+      <MultiToggle
+        v-dot-hover
+        @choose="localCangeCursorEffect($event)"
+        :items="cursorSettingGroup"
+        :defaultKey="cursorSettingGroup.indexOf(useStore().cursorEffect)!"
+        :disabled="!useStore().userAgent.isWebKit"
+      ></MultiToggle>
+    </perference-item>
+
+    <perference-item title="简洁模式" subtitle="简洁模式不会显示搜索引擎列表">
+      <MultiToggle
+        v-dot-hover
+        @choose="localChangeCompactMode($event)"
+        :items="['开', '关']"
+        :defaultKey="useStore().compactMode ? 0 : 1"
+      ></MultiToggle>
+    </perference-item>
+
+    <perference-item title="命令模式" subtitle="即将支持">
       <MultiToggle
         v-dot-hover
         @choose="localCangeCursorEffect($event)"
@@ -69,18 +65,20 @@
         :defaultKey="1"
         disabled
       ></MultiToggle>
-    </div>
+    </perference-item>
   </div>
 </template>
 
 <script setup lang='ts'>
 import 'boxicons'
-import MultiToggle from '../widget/multi-toggle.vue';
+import MultiToggle from '../widgets/multi-toggle.vue';
 import { CursorEffect, Theme } from '../model/Setting'
 import { ref } from 'vue'
 import useStore from '../store/index'
 import router from '../router'
-import BoxIcon from '../widget/box-icon.vue'
+import BoxIcon from '../widgets/box-icon.vue'
+import PerferenceItem from '../components/PerferenceItem.vue';
+import { Device } from '../model/Setting'
 
 const cursorSettingGroup = ref([CursorEffect.take, CursorEffect.follow, CursorEffect.none])
 
@@ -93,7 +91,12 @@ const themeSettingGroup = ref([Theme.light, Theme.dark, Theme.auto])
 
 function localChangeThemeSetting(key: number): void {
   useStore().changeThemeSetting(themeSettingGroup.value[key])
+}
 
+const compactModeSettingGroup = ref([true, false])
+
+function localChangeCompactMode(key: number): void {
+  useStore().changeCompactMode(compactModeSettingGroup.value[key])
 }
 </script>
 

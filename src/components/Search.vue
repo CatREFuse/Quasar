@@ -1,6 +1,9 @@
 <template>
   <div
-    class="flex flex-col gap-4 md:gap-6 min-w-[256px]"
+    class="flex flex-col gap-8 md:gap-6 min-w-[256px]"
+    :style="
+      { 'margin-top': useStore().compactMode ? '2rem' : 0 }
+    "
     @keydown.tab.prevent="switchEngine($event)"
   >
     <div class="flex flex-row items-center pr-2">
@@ -22,7 +25,7 @@
       :iconName="useStore().engine!.iconName"
       :url-pattern="useStore().engine!.urlPattern"
     />
-    <EngineList></EngineList>
+    <EngineList v-if="!useStore().compactMode"></EngineList>
   </div>
 </template>
 
@@ -33,7 +36,7 @@ import EngineList from './EngineList.vue';
 import useStore from '../store/index'
 import router from '../router'
 import { Theme } from '../model/Setting'
-import boxIcon from '../widget/box-icon.vue';
+import boxIcon from '../widgets/box-icon.vue';
 
 // 切换引擎
 function switchEngine(event?: KeyboardEvent) {
