@@ -6,4 +6,26 @@
   .row-center {
     @apply flex flex-row items-center justify-center;
   }
+  .bg-base {
+    @apply bg-zinc-100 dark:bg-zinc-900;
+  }
+  .bg-overlay {
+    @apply bg-white dark:bg-zinc-800;
+  }
+  .bg-overlay-2 {
+    @apply bg-zinc-100 dark:bg-zinc-700;
+  }
+
+  .text-main {
+    @apply text-zinc-800 dark:text-white text-base;
+  }
+
+  .text-secondary {
+    @apply text-zinc-500 dark:text-zinc-400;
+  }
+
+  .text-tertiary,
+  .text-disabled {
+    @apply text-zinc-400 dark:text-zinc-600;
+  }
 }

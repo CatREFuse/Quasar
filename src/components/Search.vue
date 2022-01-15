@@ -4,10 +4,13 @@
     @keydown.tab.prevent="switchEngine($event)"
   >
     <div class="flex flex-row items-center pr-2">
-      <img src="../assets/quasar_logo.svg" class="w-40 md:w-60 select-none" />
+      <img
+        :src="useStore().theme == Theme.light ? '/assets/quasar_logo.svg' : '/assets/quasar_logo_dark.svg'"
+        class="w-40 md:w-60 select-none"
+      />
       <div id="spacer" class="flex-1"></div>
       <i
-        class="bx bxs-cog h-[1.75rem] w-[1.75rem] hover:cursor-pointer text-[1.75rem] opacity-30"
+        class="bx bxs-cog h-[1.75rem] w-[1.75rem] hover:cursor-pointer text-[1.75rem] opacity-30 text-secondary"
         v-dot-hover
         @click="router.push('/preference')"
       ></i>
@@ -25,8 +28,8 @@ import 'boxicons'
 import SearchBar from './SearchBar.vue';
 import EngineList from './EngineList.vue';
 import useStore from '../store/index'
-import MultiToggle from '../widget/multi-toggle.vue';
 import router from '../router'
+import { Theme } from '../model/Setting'
 
 // 切换引擎
 function switchEngine(event?: KeyboardEvent) {

@@ -6,6 +6,7 @@ import useStore from './store/index'
 import { getEngineList } from './query/query'
 import { Device, Theme, CursorEffect } from './model/Setting';
 import Debugger from './components/Debugger.vue';
+import Footer from './components/Footer.vue';
 
 
 // #region 主题监听
@@ -64,6 +65,14 @@ watch(() => state.visualCursor, (newValue, oldValue) => {
   cursorUI.grow = Math.min(Math.max(distance / 5, 1), 2)
   cursorUI.degree = Math.atan2(delta.y, delta.x) * 180 / Math.PI
 
+})
+
+watchEffect(() => {
+  if (useStore().theme == 'dark') {
+    document.getElementsByTagName('html')[0].classList.add('dark')
+  } else {
+    document.getElementsByTagName('html')[0].classList.remove('dark')
+  }
 })
 
 
@@ -170,48 +179,17 @@ router.beforeEach((to, from) => {
         </keep-alive>
       </router-view>
     </div>
-
     <img
       name="background-img"
       class="fixed z-[-1000] -right-1 -bottom-1 pointer-events-none select-none"
-      src="./assets/quasar_logo_bg.svg"
+      :src="useStore().theme == Theme.light ? '/assets/quasar_logo_bg.svg' : '/assets/quasar_logo_bg_dark.svg'"
       :style="{
         transform: `none` || `translate(${-state.cursor.x / 80}px, ${-state.cursor.y / 80}px`,
       }"
     />
   </div>
   <Debugger>cursor: {{ state.cursor.x }}, {{ state.cursor.y }}</Debugger>
-  <div
-    name="footer"
-    class="invisible md:visible md:fixed md:bottom-6 md:right-[28px] md:text-right md:z-[100] select-text text-sm mt-4 font-medium opacity-30"
-    v-if="!useStore().debug"
-    v-text-hover
-  >
-    <p class="my-2">
-      © 2020 - 2021 🍓
-      <a
-        href="http:///bad-strawberry.com"
-        v-dot-hover
-        target="_blank"
-        class="decoration-none hover:underline"
-      >Bad Strawberry</a>.
-      <span>All rights reserved.</span>
-    </p>
-    <p>
-      <a
-        href="https://www.craft.do/s/Gi8HESIcZQsSIY"
-        target="_blank"
-        v-dot-hover
-        class="decoration-none hover:underline"
-      >用户协议</a> ·
-      <a
-        href="https://beian.miit.gov.cn/#/Integrated/index"
-        target="_blank"
-        v-dot-hover
-        class="decoration-none hover:underline"
-      >浙 ICP 备 2020033146 号 - 2</a>
-    </p>
-  </div>
+  <Footer v-if="!useStore().debug" v-text-hover></Footer>
 </template>
 
 <style lang="scss">
@@ -266,7 +244,7 @@ router.beforeEach((to, from) => {
 
 .hover {
   background-color: transparent;
-  border-color: pink;
+  border-color: rgb(255, 255, 255);
   border-width: 2px;
   width: 40px;
   height: 40px;
@@ -282,7 +260,6 @@ body {
   --drop-shadow: 0px 16px 32px rgba(0, 0, 0, 0.16);
   margin: 0;
   padding: 0;
-  background-color: var(--body-base);
   font-family: Avenir, "Pingfang SC", Helvetica, sans-serif;
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div
-    class="inline-flex flex-row items-center h-14 w-full gap-2 py-0 pl-4 pr-2 rounded-[1rem] bg-white text-sm md:text-base align-middle sticky top-4 z-[500] transition-shadow"
+    class="inline-flex flex-row items-center h-14 w-full gap-2 py-0 pl-4 pr-2 rounded-[1rem] bg-overlay text-sm md:text-base align-middle sticky top-4 z-[500] transition-shadow"
     :class="{
       'shadow-2xl': searchbarTop <= 4 * 4
     }"
@@ -9,10 +9,13 @@
     <img
       :src="`https://gitee.com/CatREFuse/img-base/raw/master/icons/${iconName}`"
       class="w-6 h-6 select-none"
+      :class="{
+        white: useStore().theme == Theme.dark
+      }"
     />
     <input
       type="text"
-      class="h-14 font-bold w-full placeholder:text-gray-300 placeholder:font-bold outline-none"
+      class="h-14 font-bold w-full placeholder:text-zinc-500 placeholder:font-bold outline-none bg-overlay text-main"
       :placeholder="state.placeholder"
       @keydown.enter="doSearch($event)"
       v-model="state.searchStr"
@@ -29,9 +32,10 @@
         color: state.tip == '点击以搜索' ? 'var(--text-mian)' : 'var(--text-disabled)'
       }"
     >{{ state.tip }}</p>
-    <img
-      src="../assets/icons/icon_right.svg"
-      class="select-none hover:cursor-pointer w-8 h-8"
+    <box-icon
+      name="bx-right-arrow-alt"
+      size="l"
+      class="select-none hover:cursor-pointer text-secondary"
       v-dot-hover
       @click="doSearch()"
       :style="{
@@ -49,6 +53,8 @@
 import { reactive, computed, watchEffect, Ref, ref, watch, onMounted } from 'vue'
 import useStore from '../store/index'
 import axios from 'axios'
+import boxIcon from '../widget/box-icon.vue';
+import { Theme } from '../model/Setting'
 
 function turnToCaret() { useStore().caret = true; }
 function turnToNormal() { useStore().caret = false; }
@@ -169,3 +175,11 @@ function dismissClickTip() {
 
 
 </script>
+
+
+<style scoped>
+.white {
+  filter: brightness(0%) invert(100%) !important;
+  opacity: 0.8;
+}
+</style>

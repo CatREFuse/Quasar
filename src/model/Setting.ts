@@ -6,6 +6,7 @@ export enum Device {
 export enum Theme {
   light = "light",
   dark = "dark",
+  auto = "auto",
 }
 
 export enum CursorEffect {

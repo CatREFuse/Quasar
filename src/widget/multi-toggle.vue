@@ -1,6 +1,6 @@
 <template>
   <div
-    class="inline-flex flex-row gap-[6px] p-[6px] bg-gray-100 rounded-xl"
+    class="inline-flex flex-row gap-[6px] p-[6px] bg-overlay-2 rounded-xl"
     :class="props.disabled ? 'opacity-40' : ''"
   >
     <div

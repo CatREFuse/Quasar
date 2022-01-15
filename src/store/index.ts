@@ -16,6 +16,9 @@ export default defineStore({
       debug: false,
       deviceClass: Device.desktop,
       systemTheme: Theme.light,
+      userThemeSetting:
+        (window.localStorage.getItem("userThemeSetting") as Theme) ||
+        Theme.auto,
       hoverEngine: null as Engine | null,
       cursorEffect:
         (window.localStorage.getItem("cursorEffect") as CursorEffect) ||
@@ -101,6 +104,20 @@ export default defineStore({
     changeCursorEffect(effect: CursorEffect): void {
       this.cursorEffect = effect;
       window.localStorage.setItem("cursorEffect", effect);
+    },
+
+    changeThemeSetting(theme: Theme): void {
+      this.userThemeSetting = theme;
+      window.localStorage.setItem("userThemeSetting", theme);
+    },
+  },
+  getters: {
+    theme(): Theme {
+      if (this.userThemeSetting == Theme.auto) {
+        return this.systemTheme;
+      } else {
+        return this.userThemeSetting;
+      }
     },
   },
 });
