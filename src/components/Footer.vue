@@ -1,6 +1,7 @@
 <template >
   <div
-    class="invisible md:visible md:fixed md:bottom-6 md:right-[28px] md:text-right md:z-[100] select-text text-sm mt-4 font-medium text-tertiary"
+    class="invisible md:visible md:fixed md:z-[100] md:bottom-6 select-text text-sm mt-4 font-medium text-tertiary"
+    :class="useStore().compactMode ? 'md:w-[100vw] text-center' : ' md:right-[28px] md:text-right'"
   >
     <p class="my-2">
       © 2020 - 2021 🍓
@@ -30,6 +31,7 @@
 </template>
 
 <script setup lang='ts'>
+import useStore from '../store/index'
 
 </script>
 

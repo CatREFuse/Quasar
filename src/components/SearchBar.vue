@@ -1,6 +1,6 @@
 <template>
   <div
-    class="inline-flex flex-row items-center h-14 w-full gap-2 py-0 pl-4 pr-2 rounded-[1rem] bg-overlay text-sm md:text-base align-middle sticky top-4 z-[500] transition-shadow"
+    class="inline-flex flex-row items-center h-14 w-full gap-2 py-0 pl-4 pr-2 rounded-[1rem] bg-overlay text-sm md:text-base align-middle sticky top-4 z-[500] transition-shadow border-zinc-200 dark:border-zinc-700 border-[0.5px]"
     :class="{
       'shadow-2xl': searchbarTop <= 4 * 4
     }"
@@ -15,7 +15,7 @@
     />
     <input
       type="text"
-      class="h-14 font-bold w-full placeholder:text-zinc-400 placeholder:font-bold outline-none bg-overlay text-main"
+      class="h-12 font-bold w-full placeholder:text-zinc-400 placeholder:font-bold outline-none bg-overlay text-main"
       :placeholder="state.placeholder"
       @keydown.enter="doSearch($event)"
       v-model="state.searchStr"

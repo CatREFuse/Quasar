@@ -74,7 +74,8 @@ router.beforeEach((to, from) => {
 
     <div
       id="grid-container"
-      class="col-start-2 col-end-12 md:col-start-2 md:col-end-9 md:min-w-[512px] md:max-w-[764px] mt-12 md:mt-16 relative"
+      class="col-start-2 col-end-12 mt-12 relative md:min-w-[512px] md:max-w-[764px]"
+      :class="useStore().compactMode ? 'md:mx-auto md:w-[640px] md:mt-[12%]' : ' md:col-start-2 md:col-end-9  md:mt-16 '"
     >
       <router-view v-slot="{ Component, route }">
         <keep-alive>

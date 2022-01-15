@@ -26,7 +26,7 @@ import { ref } from 'vue'
 const props = withDefaults(defineProps<{
   items?: string[],
   defaultKey: number,
-  disabled: boolean,
+  disabled?: boolean,
 }>(), {
   items: () => ['跟随', '替代', '无特效'],
   defaultKey: 0,

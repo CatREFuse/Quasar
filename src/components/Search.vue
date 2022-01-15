@@ -6,16 +6,17 @@
     "
     @keydown.tab.prevent="switchEngine($event)"
   >
-    <div class="flex flex-row items-center pr-2">
+    <div class="flex flex-row items-center" :class="useStore().compactMode ? 'mb-2' : ''">
+      <div id="spacer" class="flex-1" v-if="useStore().compactMode"></div>
       <img
         :src="useStore().theme == Theme.light ? '/assets/quasar_logo.svg' : '/assets/quasar_logo_dark.svg'"
         class="w-40 md:w-60 select-none"
       />
       <div id="spacer" class="flex-1"></div>
-
       <box-icon
         name="bxs-cog"
         class="opacity-30 text-secondary hover:cursor-pointer"
+        :class="useStore().compactMode ? 'fixed top-2 right-2' : 'absolute right-2'"
         v-dot-hover
         size="l"
         @click.native="router.push('/preference')"
@@ -45,4 +46,4 @@ function switchEngine(event?: KeyboardEvent) {
 
 
 
-</script>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </script>

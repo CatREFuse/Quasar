@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-full bg-overlay rounded-[1.5rem] shadow-2xl flex flex-col md:gap-6 md:p-8 gap-4 px-4 py-6"
+    class="w-full bg-overlay rounded-[1.5rem] shadow-2xl flex flex-col md:gap-6 md:p-8 gap-6 px-5 py-6 transition-all"
   >
     <div id="header" class="flex flex-row items-center z-10 relative">
       <box-icon
@@ -13,10 +13,6 @@
       <h1 class="w-full align-center text-center font-bold text-main">偏好设置</h1>
     </div>
 
-    <perference-item title="自定义搜索引擎" subtitle="即将支持">
-      <box-icon name="bx-right-arrow-alt" class="text-[2rem] opacity-30 text-secondary" size="l"></box-icon>
-    </perference-item>
-
     <perference-item title="切换外观" subtitle=" ">
       <MultiToggle
         v-dot-hover
@@ -25,6 +21,10 @@
         :defaultKey="themeSettingGroup.indexOf(useStore().userThemeSetting)"
         :disabled="false"
       ></MultiToggle>
+    </perference-item>
+
+    <perference-item title="自定义搜索引擎" subtitle="即将支持">
+      <box-icon name="bx-right-arrow-alt" class="text-[2rem] opacity-30 text-secondary" size="l"></box-icon>
     </perference-item>
 
     <div id="分割线" class="h-[1px] bg-overlay-2"></div>
