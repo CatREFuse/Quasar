@@ -10,7 +10,7 @@
       :src="`https://gitee.com/CatREFuse/img-base/raw/master/icons/${iconName}`"
       class="w-6 h-6 select-none shrink-0"
       :class="{
-        white: useStore().theme == Theme.dark
+        white: useStore().engine?.reverseInDark == 1
       }"
     />
     <input

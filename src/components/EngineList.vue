@@ -5,7 +5,7 @@
       :key="index"
       :chosen="useStore().engine!.id == engine.id"
       :engine="engine"
-      :darkfilter="['magi', 'Github', 'Unsplash', 'DeepL', 'Amazon', '维基百科'].includes(engine.title)"
+      :darkfilter="engine.reverseInDark == 1"
     ></EngineListLabel>
   </div>
 </template>
