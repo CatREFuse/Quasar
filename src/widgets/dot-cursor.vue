@@ -2,9 +2,10 @@
   <div
     id="dot-cursor"
     class="cursor-container"
+    ref="visualCursorDOM"
     :style="{
-      transform: `translate(${visualCursor.x - 25}px,${visualCursor.y - 25}px)`,
-      transition: `all ${props.follow ? '0.08s' : '0.05s'} cubic-bezier(0.1, 0.28, 0.45, 0.75)`
+      transform: `translate(${visualCursorTarget.x - 25}px,${visualCursorTarget.y - 25}px)`,
+      transition: `all ${props.follow ? '0.15s' : '0.05s'} cubic-bezier(0.1, 0.28, 0.45, 0.75)`
     }"
   >
     <div
@@ -18,7 +19,7 @@
 
 
 <script setup lang='ts'>
-import { reactive, watch, ref } from 'vue'
+import { reactive, watch, ref, Ref, onMounted, watchEffect } from 'vue'
 
 // enum Cursor {
 //   dot = 'dot',
@@ -35,10 +36,16 @@ const props = withDefaults(defineProps<{
 })
 
 let cursor = reactive({ x: 0, y: 0 });
+
+let showFlag = ref(false)
+
+
+
 document.addEventListener('mousemove', function moveHandler(event: MouseEvent) {
   cursor.x = event.clientX;
   cursor.y = event.clientY;
   // console.log(cursor.x, cursor.y);
+
 });
 
 
@@ -50,9 +57,13 @@ document.addEventListener('mouseup', () => {
   mousedown.value = false;
 })
 
+function getCenterOfDOM(element: HTMLElement): { x: number, y: number } {
+  const rect = element.getBoundingClientRect()
+  return { x: (rect.left + rect.right) / 2, y: (rect.top + rect.bottom) / 2 };
+}
 
-let visualCursor = reactive({
-  x: 0, y: 0
+let visualCursorTarget = reactive({
+  x: 0, y: 0,
 })
 
 const cursorUI = reactive({
@@ -61,42 +72,47 @@ const cursorUI = reactive({
 })
 
 
-setInterval(() => {
-  visualCursor.x = cursor.x
-  visualCursor.y = cursor.y
+const visualCursorDOM: Ref<HTMLElement | null> = ref(null);
 
-}, 10)
 
-let direction = { dx: 0, dy: 0 }
+
+onMounted(() => {
+
+  setInterval(() => {
+
+    visualCursorTarget.x = cursor.x
+    visualCursorTarget.y = cursor.y
+
+    const visualCursor = getCenterOfDOM(visualCursorDOM.value!)
+
+    const dx = cursor.x - visualCursor.x
+    const dy = cursor.y - visualCursor.y
+
+
+
+    const distance = Math.sqrt(dx * dx + dy * dy)
+
+    // cursorUI.grow = Math.max(1, Math.min(distance / 10, 2))
+    cursorUI.grow = Math.max(1, Math.min(Math.sqrt(distance / (props.follow ? 15 : 4)), 3))
+    cursorUI.degree = Math.atan2(dy, dx) * 180 / Math.PI
+
+    visualCursorTarget.x = cursor.x
+    visualCursorTarget.y = cursor.y
+  }, 10)
+
+})
+
 
 let mouseleave = ref(true)
 
-watch(() => [visualCursor.x, visualCursor.y], (newValue, oldValue) => {
-  if (mouseleave.value) { return }
-  const delta = {
-    x: newValue[0] - oldValue[0],
-    y: newValue[1] - oldValue[1]
-  }
 
-  direction.dx = delta.x;
-  direction.dy = delta.y
-
-  const distance = Math.sqrt(delta.x * delta.x + delta.y * delta.y)
-
-  cursorUI.grow = Math.min(Math.max(distance / 10, 1), 2)
-  cursorUI.degree = Math.atan2(delta.y, delta.x) * 180 / Math.PI
-
-
-
-
-})
 
 document.getElementsByTagName('html')[0].addEventListener('mouseleave', () => {
 
   mouseleave.value = true
 
 
-  // const { x, y } = visualCursor
+  // const { x, y } = visualCursorTarget
   // const { dx, dy } = direction
   // const [vw, vh] = [window.innerWidth, window.innerHeight]
   // const k = dy / dx; const b = y - k * x; // y = kx + b
@@ -118,8 +134,8 @@ document.getElementsByTagName('html')[0].addEventListener('mouseleave', () => {
 
   // const targets = points.filter((item) => ((item.x - x) * dx >= 0) && ((item.y - y) * dy >= 0))
 
-  // visualCursor.x = targets[0]?.x
-  // visualCursor.y = targets[0]?.y
+  // visualCursorTarget.x = targets[0]?.x
+  // visualCursorTarget.y = targets[0]?.y
 
 
 
