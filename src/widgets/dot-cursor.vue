@@ -5,13 +5,13 @@
     ref="visualCursorDOM"
     :style="{
       transform: `translate(${visualCursorTarget.x - 25}px,${visualCursorTarget.y - 25}px)`,
-      transition: `all ${props.follow ? '0.15s' : '0.05s'} cubic-bezier(0.1, 0.28, 0.45, 0.75)`
+      transition: `all ${props.follow ? '0.12s' : '0.04s'} cubic-bezier(0.1, 0.28, 0.45, 0.75)`
     }"
   >
     <div
       :class="{ cursor: true, hover: props.shape == 'hover', clicked: mousedown, caret: props.shape == 'caret' }"
       :style="{
-        transform: props.shape == 'caret' ? 'none' : `rotate(${cursorUI.degree}deg) scale(${cursorUI.grow}, 1)  `,
+        transform: props.shape == 'caret' ? 'none' : `rotate(${cursorUI.degree}deg) scale(${cursorUI.grow}, ${Math.cbrt(1 / cursorUI.grow)})  `,
       }"
     ></div>
   </div>
@@ -93,7 +93,7 @@ onMounted(() => {
     const distance = Math.sqrt(dx * dx + dy * dy)
 
     // cursorUI.grow = Math.max(1, Math.min(distance / 10, 2))
-    cursorUI.grow = Math.max(1, Math.min(Math.sqrt(distance / (props.follow ? 15 : 4)), 3))
+    cursorUI.grow = Math.max(1, Math.min(Math.pow(distance / (props.follow ? 15 : 5), 1 / 4), 2.5))
     cursorUI.degree = Math.atan2(dy, dx) * 180 / Math.PI
 
     visualCursorTarget.x = cursor.x
