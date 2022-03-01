@@ -18,7 +18,7 @@
           white: props.chosen || (props.darkfilter && useStore().theme == Theme.dark),
           'brighter': useStore().theme == Theme.dark && !props.chosen
         }"
-        :src="`https://gitee.com/CatREFuse/img-base/raw/master/icons/${props.engine.iconName}`"
+        :src="imgBaseUrl + props.engine.iconName"
       />
     </div>
 
@@ -38,6 +38,7 @@ import useStore from '../store/index'
 
 
 import { Theme } from '../model/Setting'
+import { imgBaseUrl } from '../query/query'
 
 const props = withDefaults(defineProps<{
   iconName?: string,
