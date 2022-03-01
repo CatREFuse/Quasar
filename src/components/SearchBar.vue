@@ -7,7 +7,7 @@
     ref="searchbar"
   >
     <img
-      :src="`https://gitee.com/CatREFuse/img-base/raw/master/icons/${iconName}`"
+      :src="imgBaseUrl + iconName"
       class="w-6 h-6 select-none shrink-0"
       :class="{
         white: useStore().theme == Theme.dark
@@ -52,6 +52,7 @@ import useStore from '../store/index'
 import axios from 'axios'
 import boxIcon from '../widgets/box-icon.vue';
 import { Theme } from '../model/Setting'
+import { imgBaseUrl } from '../query/query'
 
 function turnToCaret() { useStore().caret = true; }
 function turnToNormal() { useStore().caret = false; }
