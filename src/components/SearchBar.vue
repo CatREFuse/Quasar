@@ -7,7 +7,7 @@
     ref="searchbar"
   >
     <img
-      :src="imgBaseUrl + iconName"
+      :src="imgBaseUrl + iconName + '.svg'"
       class="w-6 h-6 select-none shrink-0"
       :class="{
         white: useStore().engine?.reverseInDark == 1

@@ -18,7 +18,7 @@
           white: props.chosen || (props.darkfilter && useStore().theme == Theme.dark),
           'brighter': useStore().theme == Theme.dark && !props.chosen
         }"
-        :src="imgBaseUrl + props.engine.iconName"
+        :src="imgBaseUrl + props.engine.iconName + '.svg'"
       />
     </div>
 
