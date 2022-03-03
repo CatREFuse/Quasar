@@ -13,7 +13,7 @@ export function getEngineList() {
       useStore().engine = res.data[0];
     })
     .catch((err) => {
-      console.error(err.message);
+      alert(err.message);
     });
 }
 

@@ -49,6 +49,7 @@ export default defineStore({
           engine_id: engine.id,
           tags: engine.tags,
           search_string: query,
+          client_class: "web",
         })
         .then((res) => {
           if (process.env.NODE_ENV !== "production") {
