@@ -57,7 +57,25 @@
       ></MultiToggle>
     </perference-item>
 
-    <perference-item title="命令模式" subtitle="即将支持">
+    <perference-item title="命令模式" subtitle="[ 即将支持 ] 通过「#」+ 命令的方式选择搜索工具">
+      <MultiToggle
+        v-dot-hover
+        @choose="localCangeCursorEffect($event)"
+        :items="['开', '关']"
+        :defaultKey="1"
+        disabled
+      ></MultiToggle>
+    </perference-item>
+    <perference-item title="搜索工具预测" subtitle="[ 即将支持 ] 通过搜索内容预测想要使用的工具">
+      <MultiToggle
+        v-dot-hover
+        @choose="localCangeCursorEffect($event)"
+        :items="['开', '关']"
+        :defaultKey="1"
+        disabled
+      ></MultiToggle>
+    </perference-item>
+    <perference-item title="搜索建议" subtitle="[ 即将支持 ] 搜索工具提供的搜索建议">
       <MultiToggle
         v-dot-hover
         @choose="localCangeCursorEffect($event)"

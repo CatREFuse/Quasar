@@ -171,6 +171,7 @@ document.getElementsByTagName('html')[0].addEventListener('mouseenter', () => mo
   width: 15px;
   height: 15px;
   border-radius: 15px;
+  mix-blend-mode: difference;
   background-color: white;
 
   z-index: 9999;
