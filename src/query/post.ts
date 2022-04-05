@@ -1,3 +1,3 @@
-import axios from 'axios';
+import axios from "axios";
 
-axios.defaults.baseURL = 'http://api.catrefuse.com'
+axios.defaults.baseURL = "http://101.43.89.12 ";

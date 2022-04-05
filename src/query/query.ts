@@ -6,7 +6,7 @@ import axios from "axios";
 export function getEngineList() {
   axios
 
-    .get("https://api.catrefuse.com/assets/engines.json")
+    .get("http://101.43.89.12:8888/assets/engines.json")
 
     .then((res) => {
       useStore().engines = res.data;
@@ -17,4 +17,4 @@ export function getEngineList() {
     });
 }
 
-export const imgBaseUrl = "https://api.catrefuse.com/icons/";
+export const imgBaseUrl = "http://101.43.89.12:8888/icons/";
