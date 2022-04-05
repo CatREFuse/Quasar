@@ -43,7 +43,7 @@ export default defineStore({
     },
     async postRecord(query: string, engine: Engine): Promise<void> {
       await axios
-        .post("https://api.catrefuse.com/add-record", {
+        .post("http://101.43.89.12:8888/add-record", {
           title: engine.title,
           url_pattern: engine.urlPattern,
           engine_id: engine.id,
