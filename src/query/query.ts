@@ -6,7 +6,9 @@ import axios from "axios";
 export function getEngineList() {
   axios
 
-    .get("http://101.43.89.12:8888/assets/engines.json")
+    .get(
+      "https://catrefuse-server-1302682122.cos.ap-nanjing.myqcloud.com/engines.json"
+    )
 
     .then((res) => {
       useStore().engines = res.data;
@@ -17,4 +19,5 @@ export function getEngineList() {
     });
 }
 
-export const imgBaseUrl = "http://101.43.89.12:8888/icons/";
+export const imgBaseUrl =
+  "https://catrefuse-server-1302682122.cos.ap-nanjing.myqcloud.com/icons/";
